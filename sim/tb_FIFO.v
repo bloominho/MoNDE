@@ -9,7 +9,7 @@ module tb_FIFO;
 	reg [WIDTH-1:0] in;
 	wire [WIDTH-1:0] out;
 
-	FIFO_buffer #(.SIZE(4), .WIDTH(WIDTH)) FIFO (
+	fifo_buffer #(.SIZE(4), .WIDTH(WIDTH)) FIFO (
 		.clk(clk), .reset(reset),
 		.in(in), .out(out)
 	);

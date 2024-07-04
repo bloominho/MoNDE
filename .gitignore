@@ -1,8 +1,7 @@
-TestVectorA
-TestVectorB
-TestVectorR
-old/sys_array copy.v
-multiplier.v
-adder.v
-result.txt
-NDPCore.v
+sim/generate.py
+old/*
+rtl/multiplier.v
+rtl/adder.v
+rtl/result.txt
+sim/a.out
+readme.md
