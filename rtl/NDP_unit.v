@@ -22,7 +22,7 @@ module NDP_unit #(
 	input [1:0] SIMD_control,	//Signals about SIMD
 
 	//---Outpus---
-	output 															calc_done_flag, //When calculation is finished, signals 1
+	output calc_done_flag, //When calculation is finished, signals 1
 	output [ARR_HEIGHT*SYS_HEIGHT*WIDTH-1:0] 						out_a,
 	output [ARR_WIDTH*SYS_WIDTH*WIDTH-1:0] 							out_b,
 	output [ARR_WIDTH*SYS_WIDTH*ARR_HEIGHT*SYS_HEIGHT*WIDTH-1:0] 	out_c 			//Calculation result

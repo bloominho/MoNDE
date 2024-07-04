@@ -4,4 +4,3 @@ rtl/multiplier.v
 rtl/adder.v
 rtl/result.txt
 sim/a.out
-readme.md
