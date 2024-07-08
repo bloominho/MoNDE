@@ -1,0 +1,11 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+-ACCESS
+rwc
+-RELAX
+
+tb_sys_array
+-timescale
+10ps/1ps

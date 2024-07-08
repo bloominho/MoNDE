@@ -1,0 +1,14 @@
+#############################
+# SRC
+#############################
+../rtl/NDP_unit.v
+../rtl/fifo_buffer.v
+../rtl/processing_element.v
+../rtl/systolic_array.v
+../rtl/systolic_array_align.v
+
+#############################
+# TB
+#############################
+tb_FIFO.v
+tb_sys_array.v

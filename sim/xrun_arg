@@ -1,0 +1,20 @@
+
+-access rwc
+-64
+
+-smartorder 
+-v93
+-sv
+-licqueue
+-ALLOWREDEFINITION
+-relax
+
+-incdir ../rtl
+
+
+-top tb_sys_array
+
+-f filelist
+
+-timescale 10ps/1ps
+

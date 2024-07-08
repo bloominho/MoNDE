@@ -1,0 +1,725 @@
+xrun(64): 20.09-s014: (c) Copyright 1995-2021 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	20.09-s014: Started on Jul 08, 2024 at 11:14:04 KST
+xrun
+	-f xrun_arg
+		-access rwc
+		-64
+		-smartorder
+		-v93
+		-sv
+		-licqueue
+		-ALLOWREDEFINITION
+		-relax
+		-incdir ../rtl
+		-top tb_sys_array
+		-f filelist
+			../rtl/NDP_unit.v
+			../rtl/fifo_buffer.v
+			../rtl/processing_element.v
+			../rtl/systolic_array.v
+			../rtl/systolic_array_align.v
+			tb_FIFO.v
+			tb_sys_array.v
+		-timescale 10ps/1ps
+	-define WAVE
+file: ../rtl/NDP_unit.v
+	module worklib.NDP_unit:v
+		errors: 0, warnings: 0
+file: ../rtl/fifo_buffer.v
+	module worklib.fifo_buffer:v
+		errors: 0, warnings: 0
+file: ../rtl/processing_element.v
+	module worklib.processing_element:v
+		errors: 0, warnings: 0
+file: ../rtl/systolic_array.v
+	module worklib.systolic_array:v
+		errors: 0, warnings: 0
+file: ../rtl/systolic_array_align.v
+	module worklib.systolic_array_align:v
+		errors: 0, warnings: 0
+file: tb_FIFO.v
+	module worklib.tb_FIFO:v
+		errors: 0, warnings: 0
+file: tb_sys_array.v
+	module worklib.tb_sys_array:v
+		errors: 0, warnings: 0
+xmvlog: *W,SPDUSD: Include directory ../rtl given but not used.
+	Total errors/warnings found outside modules and primitives:
+		errors: 0, warnings: 1
+	Elaborating the design hierarchy:
+		Caching library 'worklib' ....... Done
+	Top level design units:
+		tb_sys_array
+xmelab: *W,DSEMEL: This SystemVerilog design will be simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+	Building instance overlay tables: 
+		$readmemb("TestVectorA", test_A);
+		                              |
+xmelab: *W,MEMODR (./tb_sys_array.v,69|32): $readmem default memory order incompatible with IEEE1364.
+		$readmemb("TestVectorB", test_B);
+		                              |
+xmelab: *W,MEMODR (./tb_sys_array.v,70|32): $readmem default memory order incompatible with IEEE1364.
+		$readmemb("TestVectorR", test_R);
+		                              |
+xmelab: *W,MEMODR (./tb_sys_array.v,71|32): $readmem default memory order incompatible with IEEE1364.
+.................... Done
+	Generating native compiled code:
+		worklib.processing_element:v <0x10df4472>
+			streams:   1, words:  1894
+		worklib.fifo_buffer:v <0x5191efa8>
+			streams:   5, words:  1927
+		worklib.fifo_buffer:v <0x62731ae0>
+			streams:   5, words:  3797
+		worklib.fifo_buffer:v <0x7c67734f>
+			streams:   5, words:  4326
+		worklib.fifo_buffer:v <0x5a0353cb>
+			streams:   5, words:  4870
+		worklib.fifo_buffer:v <0x7e1c9879>
+			streams:   5, words:  5423
+		worklib.fifo_buffer:v <0x7352ac1a>
+			streams:   5, words:  5976
+		worklib.fifo_buffer:v <0x6d46c5b5>
+			streams:   5, words:  6529
+		worklib.fifo_buffer:v <0x4b22e531>
+			streams:   5, words:  7082
+		worklib.fifo_buffer:v <0x0a1f10aa>
+			streams:   5, words:  7647
+		worklib.fifo_buffer:v <0x03b23e4c>
+			streams:   5, words:  8200
+		worklib.fifo_buffer:v <0x1da657e3>
+			streams:   5, words:  8753
+		worklib.fifo_buffer:v <0x3bc27767>
+			streams:   5, words:  9306
+		worklib.fifo_buffer:v <0x5599c087>
+			streams:   5, words:  9859
+		worklib.fifo_buffer:v <0x0a60c7af>
+			streams:   5, words: 10418
+		worklib.fifo_buffer:v <0x1474ae00>
+			streams:   5, words: 10977
+		worklib.fifo_buffer:v <0x32108e84>
+			streams:   5, words: 11536
+		worklib.fifo_buffer:v <0x732d7b1f>
+			streams:   5, words: 12095
+		worklib.fifo_buffer:v <0x7a8055f9>
+			streams:   5, words: 12654
+		worklib.fifo_buffer:v <0x64943c56>
+			streams:   5, words: 13213
+		worklib.fifo_buffer:v <0x42f01cd2>
+			streams:   5, words: 13772
+		worklib.fifo_buffer:v <0x66efd760>
+			streams:   5, words: 14331
+		worklib.fifo_buffer:v <0x6ba1e303>
+			streams:   5, words: 14890
+		worklib.fifo_buffer:v <0x75b58aac>
+			streams:   5, words: 15449
+		worklib.fifo_buffer:v <0x53d1aa28>
+			streams:   5, words: 16008
+		worklib.fifo_buffer:v <0x12ec5fb3>
+			streams:   5, words: 16567
+		worklib.fifo_buffer:v <0x1b417155>
+			streams:   5, words: 17126
+		worklib.fifo_buffer:v <0x055518fa>
+			streams:   5, words: 17685
+		worklib.fifo_buffer:v <0x2331387e>
+			streams:   5, words: 18256
+		worklib.fifo_buffer:v <0x3375c1e9>
+			streams:   5, words: 18815
+		worklib.fifo_buffer:v <0x1293a616>
+			streams:   5, words: 19377
+		worklib.fifo_buffer:v <0x0c87cfb9>
+			streams:   5, words: 19936
+		worklib.fifo_buffer:v <0x2ae3ef3d>
+			streams:   5, words: 20495
+		worklib.fifo_buffer:v <0x6bde1aa6>
+			streams:   5, words: 21054
+		worklib.fifo_buffer:v <0x62733440>
+			streams:   5, words: 21613
+		worklib.fifo_buffer:v <0x7c675def>
+			streams:   5, words: 22172
+		worklib.fifo_buffer:v <0x5a037d6b>
+			streams:   5, words: 22731
+		worklib.fifo_buffer:v <0x7e1cb6d9>
+			streams:   5, words: 23290
+		worklib.fifo_buffer:v <0x735282ba>
+			streams:   5, words: 23849
+		worklib.fifo_buffer:v <0x6d46eb15>
+			streams:   5, words: 24408
+		worklib.fifo_buffer:v <0x4b22cb91>
+			streams:   5, words: 24967
+		worklib.fifo_buffer:v <0x0a1f3e0a>
+			streams:   5, words: 25526
+		worklib.fifo_buffer:v <0x03b210ec>
+			streams:   5, words: 26085
+		worklib.fifo_buffer:v <0x1da67943>
+			streams:   5, words: 26644
+		worklib.fifo_buffer:v <0x3bc259c7>
+			streams:   5, words: 27203
+		worklib.fifo_buffer:v <0x5599ee27>
+			streams:   5, words: 27762
+		worklib.fifo_buffer:v <0x0a60e90f>
+			streams:   5, words: 28321
+		worklib.fifo_buffer:v <0x147480a0>
+			streams:   5, words: 28880
+		worklib.fifo_buffer:v <0x3210a024>
+			streams:   5, words: 29439
+		worklib.fifo_buffer:v <0x732d55bf>
+			streams:   5, words: 29998
+		worklib.fifo_buffer:v <0x7a807b59>
+			streams:   5, words: 30557
+		worklib.fifo_buffer:v <0x649412f6>
+			streams:   5, words: 31116
+		worklib.fifo_buffer:v <0x42f03272>
+			streams:   5, words: 31675
+		worklib.fifo_buffer:v <0x66eff9c0>
+			streams:   5, words: 32234
+		worklib.fifo_buffer:v <0x6ba1cda3>
+			streams:   5, words: 32793
+		worklib.fifo_buffer:v <0x75b5a40c>
+			streams:   5, words: 33352
+		worklib.fifo_buffer:v <0x53d18488>
+			streams:   5, words: 33911
+		worklib.fifo_buffer:v <0x12ec7113>
+			streams:   5, words: 34470
+		worklib.fifo_buffer:v <0x1b415ff5>
+			streams:   5, words: 35029
+		worklib.fifo_buffer:v <0x0555365a>
+			streams:   5, words: 35588
+		worklib.fifo_buffer:v <0x233116de>
+			streams:   5, words: 36147
+		worklib.fifo_buffer:v <0x1d60a211>
+			streams:   5, words: 36706
+		worklib.fifo_buffer:v <0x715eb4d2>
+			streams:   5, words: 37265
+		worklib.fifo_buffer:v <0x6f4add7d>
+			streams:   5, words: 37824
+		worklib.fifo_buffer:v <0x492efdf9>
+			streams:   5, words: 38383
+		worklib.fifo_buffer:v <0x08130862>
+			streams:   5, words: 38942
+		worklib.fifo_buffer:v <0x01be2684>
+			streams:   5, words: 39501
+		worklib.fifo_buffer:v <0x1faa4f2b>
+			streams:   5, words: 40060
+		worklib.fifo_buffer:v <0x39ce6faf>
+			streams:   5, words: 40619
+		worklib.fifo_buffer:v <0x1dd1a41d>
+			streams:   5, words: 41178
+		worklib.fifo_buffer:v <0x109f907e>
+			streams:   5, words: 41737
+		worklib.fifo_buffer:v <0x0e8bf9d1>
+			streams:   5, words: 42296
+		worklib.fifo_buffer:v <0x28efd955>
+			streams:   5, words: 42855
+		worklib.fifo_buffer:v <0x69d22cce>
+			streams:   5, words: 43414
+		worklib.fifo_buffer:v <0x607f0228>
+			streams:   5, words: 43973
+		worklib.fifo_buffer:v <0x7e6b6b87>
+			streams:   5, words: 44532
+		worklib.fifo_buffer:v <0x580f4b03>
+			streams:   5, words: 45091
+		worklib.fifo_buffer:v <0x3654fce3>
+			streams:   5, words: 45650
+		worklib.fifo_buffer:v <0x69adfbcb>
+			streams:   5, words: 46209
+		worklib.fifo_buffer:v <0x77b99264>
+			streams:   5, words: 46768
+		worklib.fifo_buffer:v <0x51ddb2e0>
+			streams:   5, words: 47327
+		worklib.fifo_buffer:v <0x10e0477b>
+			streams:   5, words: 47886
+		worklib.fifo_buffer:v <0x194d699d>
+			streams:   5, words: 48445
+		worklib.fifo_buffer:v <0x07590032>
+			streams:   5, words: 49004
+		worklib.fifo_buffer:v <0x213d20b6>
+			streams:   5, words: 49563
+		worklib.fifo_buffer:v <0x0522eb04>
+			streams:   5, words: 50122
+		worklib.fifo_buffer:v <0x086cdf67>
+			streams:   5, words: 50681
+		worklib.fifo_buffer:v <0x1678b6c8>
+			streams:   5, words: 51240
+		worklib.fifo_buffer:v <0x301c964c>
+			streams:   5, words: 51799
+		worklib.fifo_buffer:v <0x712163d7>
+			streams:   5, words: 52358
+		worklib.fifo_buffer:v <0x788c4d31>
+			streams:   5, words: 52917
+		worklib.fifo_buffer:v <0x6698249e>
+			streams:   5, words: 53476
+		worklib.fifo_buffer:v <0x40fc041a>
+			streams:   5, words: 54035
+		worklib.fifo_buffer:v <0x50b8fd8d>
+			streams:   5, words: 54594
+		worklib.fifo_buffer:v <0x715e9a72>
+			streams:   5, words: 55153
+		worklib.fifo_buffer:v <0x6f4af3dd>
+			streams:   5, words: 55712
+		worklib.fifo_buffer:v <0x492ed359>
+			streams:   5, words: 56271
+		worklib.fifo_buffer:v <0x081326c2>
+			streams:   5, words: 56830
+		worklib.fifo_buffer:v <0x01be0824>
+			streams:   5, words: 57389
+		worklib.fifo_buffer:v <0x1faa618b>
+			streams:   5, words: 57948
+		worklib.fifo_buffer:v <0x39ce410f>
+			streams:   5, words: 58507
+		worklib.fifo_buffer:v <0x1dd18abd>
+			streams:   5, words: 59066
+		worklib.fifo_buffer:v <0x109fbede>
+			streams:   5, words: 59625
+		worklib.fifo_buffer:v <0x0e8bd771>
+			streams:   5, words: 60184
+		worklib.fifo_buffer:v <0x28eff7f5>
+			streams:   5, words: 60743
+		worklib.fifo_buffer:v <0x69d2026e>
+			streams:   5, words: 61302
+		worklib.fifo_buffer:v <0x607f2c88>
+			streams:   5, words: 61861
+		worklib.fifo_buffer:v <0x7e6b4527>
+			streams:   5, words: 62420
+		worklib.fifo_buffer:v <0x580f65a3>
+			streams:   5, words: 62979
+		worklib.fifo_buffer:v <0x3654d243>
+			streams:   5, words: 63538
+		worklib.fifo_buffer:v <0x69add56b>
+			streams:   5, words: 64097
+		worklib.fifo_buffer:v <0x77b9bcc4>
+			streams:   5, words: 64656
+		worklib.fifo_buffer:v <0x51dd9c40>
+			streams:   5, words: 65215
+		worklib.fifo_buffer:v <0x10e069db>
+			streams:   5, words: 65774
+		worklib.fifo_buffer:v <0x194d473d>
+			streams:   5, words: 66333
+		worklib.fifo_buffer:v <0x07592e92>
+			streams:   5, words: 66892
+		worklib.fifo_buffer:v <0x213d0e16>
+			streams:   5, words: 67451
+		worklib.fifo_buffer:v <0x0522c5a4>
+			streams:   5, words: 68010
+		worklib.fifo_buffer:v <0x086cf1c7>
+			streams:   5, words: 68569
+		worklib.fifo_buffer:v <0x16789868>
+			streams:   5, words: 69128
+		worklib.fifo_buffer:v <0x301cb8ec>
+			streams:   5, words: 69687
+		worklib.fifo_buffer:v <0x71214d77>
+			streams:   5, words: 70246
+		worklib.fifo_buffer:v <0x788c6391>
+			streams:   5, words: 70805
+		worklib.fifo_buffer:v <0x66980a3e>
+			streams:   5, words: 71364
+		worklib.fifo_buffer:v <0x40fc2aba>
+			streams:   5, words: 71923
+		worklib.fifo_buffer:v <0x2bddd332>
+			streams:   5, words: 72485
+		worklib.fifo_buffer:v <0x64ef40ec>
+			streams:   5, words: 73050
+		worklib.fifo_buffer:v <0x7afb2943>
+			streams:   5, words: 73615
+		worklib.fifo_buffer:v <0x5c9f09c7>
+			streams:   5, words: 74180
+		worklib.fifo_buffer:v <0x1da2fc5c>
+			streams:   5, words: 74745
+		worklib.fifo_buffer:v <0x140fd2ba>
+			streams:   5, words: 75310
+		worklib.fifo_buffer:v <0x0a1bbb15>
+			streams:   5, words: 75875
+		worklib.fifo_buffer:v <0x2c7f9b91>
+			streams:   5, words: 76440
+		worklib.fifo_buffer:v <0x08605023>
+			streams:   5, words: 77005
+		worklib.fifo_buffer:v <0x052e6440>
+			streams:   5, words: 77570
+		worklib.fifo_buffer:v <0x1b3a0def>
+			streams:   5, words: 78135
+		worklib.fifo_buffer:v <0x3d5e2d6b>
+			streams:   5, words: 78700
+		worklib.fifo_buffer:v <0x7c63d8f0>
+			streams:   5, words: 79265
+		worklib.fifo_buffer:v <0x75cef616>
+			streams:   5, words: 79830
+		worklib.fifo_buffer:v <0x6bda9fb9>
+			streams:   5, words: 80395
+		worklib.fifo_buffer:v <0x4dbebf3d>
+			streams:   5, words: 80960
+		worklib.fifo_buffer:v <0x23e508dd>
+			streams:   5, words: 81525
+		worklib.fifo_buffer:v <0x7c1c0ff5>
+			streams:   5, words: 82090
+		worklib.fifo_buffer:v <0x6208665a>
+			streams:   5, words: 82655
+		worklib.fifo_buffer:v <0x446c46de>
+			streams:   5, words: 83220
+		worklib.fifo_buffer:v <0x0551b345>
+			streams:   5, words: 83785
+		worklib.fifo_buffer:v <0x0cfc9da3>
+			streams:   5, words: 84350
+		worklib.fifo_buffer:v <0x12e8f40c>
+			streams:   5, words: 84915
+		worklib.fifo_buffer:v <0x348cd488>
+			streams:   5, words: 85480
+		worklib.fifo_buffer:v <0x10931f3a>
+			streams:   5, words: 86045
+		worklib.fifo_buffer:v <0x1ddd2b59>
+			streams:   5, words: 86610
+		worklib.fifo_buffer:v <0x03c942f6>
+			streams:   5, words: 87175
+		worklib.fifo_buffer:v <0x25ad6272>
+			streams:   5, words: 87740
+		worklib.fifo_buffer:v <0x649097e9>
+			streams:   5, words: 88305
+		worklib.fifo_buffer:v <0x6d3db90f>
+			streams:   5, words: 88870
+		worklib.fifo_buffer:v <0x7329d0a0>
+			streams:   5, words: 89435
+		worklib.fifo_buffer:v <0x554df024>
+			streams:   5, words: 90000
+		worklib.fifo_buffer:v <0x450909b3>
+			streams:   5, words: 90565
+		worklib.fifo_buffer:v <0x64ef6e4c>
+			streams:   5, words: 91130
+		worklib.fifo_buffer:v <0x7afb07e3>
+			streams:   5, words: 91695
+		worklib.fifo_buffer:v <0x5c9f2767>
+			streams:   5, words: 92260
+		worklib.fifo_buffer:v <0x1da2d2fc>
+			streams:   5, words: 92825
+		worklib.fifo_buffer:v <0x140ffc1a>
+			streams:   5, words: 93390
+		worklib.fifo_buffer:v <0x0a1b95b5>
+			streams:   5, words: 93955
+		worklib.fifo_buffer:v <0x2c7fb531>
+			streams:   5, words: 94520
+		worklib.fifo_buffer:v <0x08607e83>
+			streams:   5, words: 95085
+		worklib.fifo_buffer:v <0x052e4ae0>
+			streams:   5, words: 95650
+		worklib.fifo_buffer:v <0x1b3a234f>
+			streams:   5, words: 96215
+		worklib.fifo_buffer:v <0x3d5e03cb>
+			streams:   5, words: 96780
+		worklib.fifo_buffer:v <0x7c63f650>
+			streams:   5, words: 97410
+		worklib.fifo_buffer:v <0x75ced8b6>
+			streams:   5, words: 97975
+		worklib.fifo_buffer:v <0x6bdab119>
+			streams:   5, words: 98540
+		worklib.fifo_buffer:v <0x4dbe919d>
+			streams:   5, words: 99105
+		worklib.fifo_buffer:v <0x23e5267d>
+			streams:   5, words: 99670
+		worklib.fifo_buffer:v <0x7c1c2155>
+			streams:   5, words: 100235
+		worklib.fifo_buffer:v <0x620848fa>
+			streams:   5, words: 100800
+		worklib.fifo_buffer:v <0x446c687e>
+			streams:   5, words: 101365
+		worklib.fifo_buffer:v <0x05519de5>
+			streams:   5, words: 101930
+		worklib.fifo_buffer:v <0x0cfcb303>
+			streams:   5, words: 102495
+		worklib.fifo_buffer:v <0x12e8daac>
+			streams:   5, words: 103060
+		worklib.fifo_buffer:v <0x348cfa28>
+			streams:   5, words: 103625
+		worklib.fifo_buffer:v <0x1093319a>
+			streams:   5, words: 104190
+		worklib.fifo_buffer:v <0x1ddd05f9>
+			streams:   5, words: 104755
+		worklib.fifo_buffer:v <0x03c96c56>
+			streams:   5, words: 105320
+		worklib.fifo_buffer:v <0x25ad4cd2>
+			streams:   5, words: 105885
+		worklib.fifo_buffer:v <0x6490b949>
+			streams:   5, words: 106450
+		worklib.fifo_buffer:v <0x6d3d97af>
+			streams:   5, words: 107015
+		worklib.fifo_buffer:v <0x7329fe00>
+			streams:   5, words: 107580
+		worklib.fifo_buffer:v <0x554dde84>
+			streams:   5, words: 108145
+		worklib.fifo_buffer:v <0x6b1c6a4b>
+			streams:   5, words: 108710
+		worklib.fifo_buffer:v <0x07227c88>
+			streams:   5, words: 109275
+		worklib.fifo_buffer:v <0x19361527>
+			streams:   5, words: 109840
+		worklib.fifo_buffer:v <0x3f5235a3>
+			streams:   5, words: 110405
+		worklib.fifo_buffer:v <0x7e6fc038>
+			streams:   5, words: 110970
+		worklib.fifo_buffer:v <0x77c2eede>
+			streams:   5, words: 111535
+		worklib.fifo_buffer:v <0x69d68771>
+			streams:   5, words: 112100
+		worklib.fifo_buffer:v <0x4fb2a7f5>
+			streams:   5, words: 112665
+		worklib.fifo_buffer:v <0x6bad6c47>
+			streams:   5, words: 113230
+		worklib.fifo_buffer:v <0x66e35824>
+			streams:   5, words: 113795
+		worklib.fifo_buffer:v <0x78f7318b>
+			streams:   5, words: 114360
+		worklib.fifo_buffer:v <0x5e93110f>
+			streams:   5, words: 114925
+		worklib.fifo_buffer:v <0x1faee494>
+			streams:   5, words: 115490
+		worklib.fifo_buffer:v <0x1603ca72>
+			streams:   5, words: 116055
+		worklib.fifo_buffer:v <0x0817a3dd>
+			streams:   5, words: 116620
+		worklib.fifo_buffer:v <0x2e738359>
+			streams:   5, words: 117185
+		worklib.fifo_buffer:v <0x402834b9>
+			streams:   5, words: 117750
+		worklib.fifo_buffer:v <0x1fd13391>
+			streams:   5, words: 118315
+		worklib.fifo_buffer:v <0x01c55a3e>
+			streams:   5, words: 118880
+		worklib.fifo_buffer:v <0x27a17aba>
+			streams:   5, words: 119445
+		worklib.fifo_buffer:v <0x669c8f21>
+			streams:   5, words: 120010
+		worklib.fifo_buffer:v <0x6f31a1c7>
+			streams:   5, words: 120575
+		worklib.fifo_buffer:v <0x7125c868>
+			streams:   5, words: 121140
+		worklib.fifo_buffer:v <0x5741e8ec>
+			streams:   5, words: 121705
+		worklib.fifo_buffer:v <0x735e235e>
+			streams:   5, words: 122270
+		worklib.fifo_buffer:v <0x7e10173d>
+			streams:   5, words: 122835
+		worklib.fifo_buffer:v <0x60047e92>
+			streams:   5, words: 123400
+		worklib.fifo_buffer:v <0x46605e16>
+			streams:   5, words: 123965
+		worklib.fifo_buffer:v <0x075dab8d>
+			streams:   5, words: 124530
+		worklib.fifo_buffer:v <0x0ef0856b>
+			streams:   5, words: 125095
+		worklib.fifo_buffer:v <0x10e4ecc4>
+			streams:   5, words: 125660
+		worklib.fifo_buffer:v <0x3680cc40>
+			streams:   5, words: 126225
+		worklib.fifo_buffer:v <0x26c435d7>
+			streams:   5, words: 126790
+		worklib.fifo_buffer:v <0x07225228>
+			streams:   5, words: 127355
+		worklib.fifo_buffer:v <0x19363b87>
+			streams:   5, words: 127920
+		worklib.fifo_buffer:v <0x3f521b03>
+			streams:   5, words: 128485
+		worklib.fifo_buffer:v <0x7e6fee98>
+			streams:   5, words: 129050
+		worklib.fifo_buffer:v <0x77c2c07e>
+			streams:   5, words: 129615
+		worklib.fifo_buffer:v <0x69d6a9d1>
+			streams:   5, words: 130180
+		worklib.fifo_buffer:v <0x4fb28955>
+			streams:   5, words: 130745
+		worklib.fifo_buffer:v <0x6bad42e7>
+			streams:   5, words: 131310
+		worklib.fifo_buffer:v <0x66e37684>
+			streams:   5, words: 131875
+		worklib.fifo_buffer:v <0x78f71f2b>
+			streams:   5, words: 132440
+		worklib.fifo_buffer:v <0x5e933faf>
+			streams:   5, words: 133005
+		worklib.fifo_buffer:v <0x1faeca34>
+			streams:   5, words: 133570
+		worklib.fifo_buffer:v <0x1603e4d2>
+			streams:   5, words: 134135
+		worklib.fifo_buffer:v <0x08178d7d>
+			streams:   5, words: 134700
+		worklib.fifo_buffer:v <0x2e73adf9>
+			streams:   5, words: 135265
+		worklib.fifo_buffer:v <0x40281a19>
+			streams:   5, words: 135830
+		worklib.fifo_buffer:v <0x1fd11d31>
+			streams:   5, words: 136395
+		worklib.fifo_buffer:v <0x01c5749e>
+			streams:   5, words: 136960
+		worklib.fifo_buffer:v <0x27a1541a>
+			streams:   5, words: 137525
+		worklib.fifo_buffer:v <0x669ca181>
+			streams:   5, words: 138090
+		worklib.fifo_buffer:v <0x6f318f67>
+			streams:   5, words: 138655
+		worklib.fifo_buffer:v <0x7125e6c8>
+			streams:   5, words: 139220
+		worklib.fifo_buffer:v <0x5741c64c>
+			streams:   5, words: 139785
+		worklib.fifo_buffer:v <0x735e0dfe>
+			streams:   5, words: 140350
+		worklib.fifo_buffer:v <0x7e10399d>
+			streams:   5, words: 140915
+		worklib.fifo_buffer:v <0x60045032>
+			streams:   5, words: 141480
+		worklib.fifo_buffer:v <0x466070b6>
+			streams:   5, words: 142045
+		worklib.fifo_buffer:v <0x075d852d>
+			streams:   5, words: 142610
+		worklib.fifo_buffer:v <0x0ef0abcb>
+			streams:   5, words: 143175
+		worklib.fifo_buffer:v <0x10e4c264>
+			streams:   5, words: 143740
+		worklib.fifo_buffer:v <0x3680e2e0>
+			streams:   5, words: 144305
+		worklib.fifo_buffer:v <0x7e1b5611>
+			streams:   5, words: 144870
+		worklib.fifo_buffer:v <0x129388b6>
+			streams:   5, words:  2245
+		worklib.fifo_buffer:v <0x0c87e119>
+			streams:   5, words:  2207
+		worklib.fifo_buffer:v <0x2ae3c19d>
+			streams:   5, words:  2739
+		worklib.fifo_buffer:v <0x6bde3406>
+			streams:   5, words:  3268
+		worklib.tb_sys_array:v <0x29c50051>
+			streams:  17, words: 15083
+		worklib.systolic_array_align:v <0x749a48f4>
+			streams:   7, words: 41405
+		worklib.NDP_unit:v <0x4e488be5>
+			streams: 260, words: 53585
+		worklib.systolic_array:v <0x7156e42c>
+			streams:   4, words:  2357
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                   Instances  Unique
+		Modules:                1352       6
+		Registers:              4634      22
+		Scalar wires:          12292       -
+		Expanded wires:        90240    4614
+		Vectored wires:          393       -
+		Always blocks:          1287       4
+		Initial blocks:            9       9
+		Cont. assignments:      1545      10
+		Pseudo assignments:      394     268
+		Simulation timescale:    1ps
+	Writing initial simulation snapshot: worklib.tb_sys_array:v
+Loading snapshot worklib.tb_sys_array:v .................... Done
+xmsim: *W,DSEM2009: This SystemVerilog design is simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+xcelium> source /usr/cad/cadence/XCELIUMMAIN2009/tools/xcelium/files/xmsimrc
+xcelium> run
+          1: Passed
+          2: Passed
+          3: Passed
+          4: Passed
+          5: Passed
+          6: Passed
+          7: Passed
+          8: Passed
+          9: Passed
+         10: Passed
+         11: Passed
+         12: Passed
+         13: Passed
+         14: Passed
+         15: Passed
+         16: Passed
+         17: Passed
+         18: Passed
+         19: Passed
+         20: Passed
+         21: Passed
+         22: Passed
+         23: Passed
+         24: Passed
+         25: Passed
+         26: Passed
+         27: Passed
+         28: Passed
+         29: Passed
+         30: Passed
+         31: Passed
+         32: Passed
+         33: Passed
+         34: Passed
+         35: Passed
+         36: Passed
+         37: Passed
+         38: Passed
+         39: Passed
+         40: Passed
+         41: Passed
+         42: Passed
+         43: Passed
+         44: Passed
+         45: Passed
+         46: Passed
+         47: Passed
+         48: Passed
+         49: Passed
+         50: Passed
+         51: Passed
+         52: Passed
+         53: Passed
+         54: Passed
+         55: Passed
+         56: Passed
+         57: Passed
+         58: Passed
+         59: Passed
+         60: Passed
+         61: Passed
+         62: Passed
+         63: Passed
+         64: Passed
+         65: Passed
+         66: Passed
+         67: Passed
+         68: Passed
+         69: Passed
+         70: Passed
+         71: Passed
+         72: Passed
+         73: Passed
+         74: Passed
+         75: Passed
+         76: Passed
+         77: Passed
+         78: Passed
+         79: Passed
+         80: Passed
+         81: Passed
+         82: Passed
+         83: Passed
+         84: Passed
+         85: Passed
+         86: Passed
+         87: Passed
+         88: Passed
+         89: Passed
+         90: Passed
+         91: Passed
+         92: Passed
+         93: Passed
+         94: Passed
+         95: Passed
+         96: Passed
+         97: Passed
+         98: Passed
+         99: Passed
+        100: Passed
+Simulation stopped via $stop(1) at time 265 US + 0
+./tb_sys_array.v:136 						$stop;
+xcelium> 
+xcelium> 
+xcelium> 
+xcelium> 
+xcelium> 
+xcelium> 
+xcelium> 
+xcelium> 
+xcelium> 
+xcelium> 
+xcelium> 
+xcelium> ^C
+xcelium> ^C
+xcelium> exit
+TOOL:	xrun(64)	20.09-s014: Exiting on Jul 08, 2024 at 11:17:43 KST  (total: 00:03:39)
