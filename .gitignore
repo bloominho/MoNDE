@@ -3,19 +3,6 @@ rtl/adder.v
 rtl/multiplier.v
 rtl/priority_encoder.v
 
-rtl/DW_fp_add.v
-rtl/DW_fp_mult.v
-rtl/DW_fp_addsub.v
-rtl/DW_lp_pipe_mgr.v
-rtl/DW_lp_piped_fp_add.v
-rtl/DW_lp_piped_fp_mult.v
-
-rtl/2stage/DW_fp_add.v
-rtl/2stage/DW_fp_mult.v
-rtl/2stage/DW_fp_addsub.v
-rtl/2stage/DW_lp_pipe_mgr.v
-rtl/2stage/DW_lp_piped_fp_add.v
-rtl/2stage/DW_lp_piped_fp_mult.v
 
 # Under Construction
 rtl/NDP_core.v
