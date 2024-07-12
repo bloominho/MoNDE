@@ -12,6 +12,7 @@ module systolic_array #(
 ) (
 	input clk,
 	input reset,
+	input in_done_flag,
 
 	//---DATA IN---
 	input [ARR_HEIGHT * WIDTH-1:0] in_a,	//West
@@ -42,7 +43,7 @@ generate
 					.WIDTH(WIDTH), 
 					.IS_FLOAT(IS_FLOAT), .EXP_BITS(EXP_BITS), .FRAC_BITS(FRAC_BITS)
 				) PE (
-					.reset(reset), .clk(clk), .SIMD_control(SIMD_control),
+					.reset(reset), .clk(clk), .SIMD_control(SIMD_control), .in_done_flag(in_done_flag),
 					.in_a(v_passes[(j*ARR_HEIGHT+i+1)*WIDTH-1:(j*ARR_HEIGHT+i)*WIDTH]),
 					.in_b(h_passes[(i*ARR_WIDTH+j+1)*WIDTH-1:(i*ARR_WIDTH+j)*WIDTH]),
 					.out_a(v_passes[((j+1)*ARR_HEIGHT+i+1)*WIDTH-1:((j+1)*ARR_HEIGHT+i)*WIDTH]),

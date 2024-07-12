@@ -16,7 +16,7 @@ module tb_sys_array;
 
 	//---# of Systolic Arrays---
 	parameter SYS_HEIGHT = 1;
-	parameter SYS_WIDTH = 1;
+	parameter SYS_WIDTH = 64;
 
 	//---Testbench Data---
 	parameter MATRIX_A_HEIGHT = SYS_HEIGHT*ARR_HEIGHT;
@@ -74,10 +74,10 @@ module tb_sys_array;
 	//---1. Read Vectors---
 	initial
 	begin
-		$readmemb("SystolicTestVector/TestVectorA", test_A);
-		$readmemb("SystolicTestVector/TestVectorB", test_B);
-		$readmemb("SystolicTestVector/TestVectorR", test_R);
-		results_file = $fopen("SystolicTestVector/Results.txt");
+		$readmemb("SystolicTestVector_2stage/TestVectorA", test_A);
+		$readmemb("SystolicTestVector_2stage/TestVectorB", test_B);
+		$readmemb("SystolicTestVector_2stage/TestVectorR", test_R);
+		results_file = $fopen("SystolicTestVector_2stage/Results.txt");
 	end
 
 	//---2. Calculate & Assess---
