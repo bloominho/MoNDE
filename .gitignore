@@ -1,6 +1,20 @@
-sim/generate.py
-old/*
-rtl/multiplier.v
+# floating point
 rtl/adder.v
-rtl/result.txt
+rtl/multiplier.v
+rtl/priority_encoder.v
+
+rtl/DW_fp_add.v
+rtl/DW_fp_mult.v
+rtl/DW_fp_addsub.v
+rtl/DW_lp_pipe_mgr.v
+rtl/DW_lp_piped_fp_add.v
+rtl/DW_lp_piped_fp_mult.v
+
+# Under Construction
+rtl/NDP_core.v
+
+# Simulation File
 sim/a.out
+
+# old, backup files
+old/*

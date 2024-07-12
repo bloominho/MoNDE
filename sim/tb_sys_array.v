@@ -6,6 +6,10 @@ module tb_sys_array;
 	//---DATA WIDTH---
 	parameter WIDTH = 16;
 
+	parameter IS_FLOAT = 1;
+	parameter EXP_BITS = 5;
+	parameter FRAC_BITS = 10;
+
 	//---# of PE in SYSTOLIC ARRAY---
 	parameter ARR_HEIGHT = 4;
 	parameter ARR_WIDTH = 4;
@@ -16,7 +20,7 @@ module tb_sys_array;
 
 	//---Testbench Data---
 	parameter MATRIX_A_HEIGHT = SYS_HEIGHT*ARR_HEIGHT;
-	parameter MATRIX_A_WIDTH = 3;
+	parameter MATRIX_A_WIDTH = 5;
 	parameter MATRIX_B_HEIGHT = MATRIX_A_WIDTH;
 	parameter MATRIX_B_WIDTH = SYS_WIDTH*ARR_WIDTH;
 
@@ -50,13 +54,17 @@ module tb_sys_array;
 	always #5 clk = ~clk;
 
 
-	NDP_unit #(.WIDTH(WIDTH), .ARR_WIDTH(ARR_WIDTH), .ARR_HEIGHT(ARR_HEIGHT), .SYS_WIDTH(SYS_WIDTH), .SYS_HEIGHT(SYS_HEIGHT)) NDPUnit (
-		.clk(clk), .reset(reset),
-		.in_a(in_a), .in_b(in_b),
-		.out_a(out_a), .out_b(out_b), .out_c(simul_result),
-		.in_done_flag(in_done_flag),
-		.calc_done_flag(calc_done_flag),
-		.SIMD_control(2'b00)
+	NDP_unit #(
+			.WIDTH(WIDTH), 
+			.IS_FLOAT(IS_FLOAT), .EXP_BITS(EXP_BITS), .FRAC_BITS(FRAC_BITS), 
+			.ARR_WIDTH(ARR_WIDTH), .ARR_HEIGHT(ARR_HEIGHT), .SYS_WIDTH(SYS_WIDTH), .SYS_HEIGHT(SYS_HEIGHT)
+		) NDPUnit (
+			.clk(clk), .reset(reset),
+			.in_a(in_a), .in_b(in_b),
+			.out_c(simul_result),
+			.in_done_flag(in_done_flag),
+			.calc_done_flag(calc_done_flag),
+			.SIMD_control(2'b00)
 	);
 
 
@@ -66,10 +74,10 @@ module tb_sys_array;
 	//---1. Read Vectors---
 	initial
 	begin
-		$readmemb("TestVectorA", test_A);
-		$readmemb("TestVectorB", test_B);
-		$readmemb("TestVectorR", test_R);
-		results_file = $fopen("Results.txt");
+		$readmemb("SystolicTestVector/TestVectorA", test_A);
+		$readmemb("SystolicTestVector/TestVectorB", test_B);
+		$readmemb("SystolicTestVector/TestVectorR", test_R);
+		results_file = $fopen("SystolicTestVector/Results.txt");
 	end
 
 	//---2. Calculate & Assess---
@@ -125,15 +133,17 @@ module tb_sys_array;
 						//---Test Finished---
 						if(pass == test_count) begin
 							//---Test Success---
+							$display ("Passed: %d/%d", pass, test_count);
 							$fdisplay (results_file,"Passed: %d/%d", pass, test_count);
 							$fclose(results_file);
 
 						end else begin
 							//---Test Fail---
+							$display ("Failed: %d/%d", pass, test_count);
 							$fdisplay (results_file,"Failed: %d/%d", pass, test_count);
 							$fclose(results_file);
 						end
-						$stop;
+						$finish;
 					end
 				end
 			end
