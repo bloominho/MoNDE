@@ -45,54 +45,26 @@ reg [2:0] weight_bram_layer;
 reg [2:0] data_address_into_ndp_unit;
 
 reg NDP_unit_reset;
+
 //---Scratch Pad---
-//---Activation Matrix---
-
-// initial
-// 	$monitor("%h %h", weight_bram_layer, weight_bram_num);
-
-genvar i;
-generate
-	for(i=0; i<SYS_HEIGHT; i=i+1) begin
-		bram_dual  #(.COUNT(BUFFER_SIZE*2)) bram_activation_X (
-			.clka(clk),
-			.ena(1'b1),
-			.wea((step == 3'd1) && (act_bram_num == i)),
-			.addra(act_bram_addr + 4'd2*act_bram_layer),
-			.dina(data_received),
-			.douta(),
-
-			.clkb(clk),
-			.enb(1'b1),
-			.web(),
-			.addrb(data_address_into_ndp_unit),
-			.dinb(),
-			.doutb(into_ndp_a[64*i +: 64])
-		);
-	end
-endgenerate
-
-//---Weight Matrix---
-genvar j;
-generate
-	for(j=0; j<SYS_WIDTH; j=j+1) begin
-		bram_dual #(.COUNT(BUFFER_SIZE*2)) bram_weight_X (
-			.clka(clk),
-			.ena(1'b1),
-			.wea((step == 3'd2) && (weight_bram_num == j)),
-			.addra(weight_bram_addr + 4'd2*weight_bram_layer),
-			.dina(data_received),
-			.douta(),
-
-			.clkb(clk),
-			.enb(1'b1),
-			.web(),
-			.addrb(data_address_into_ndp_unit),
-			.dinb(),
-			.doutb(into_ndp_b[64*j +: 64])
-		);
-	end
-endgenerate
+scratch_pad #(
+	.WIDTH(WIDTH), .BUFFER_SIZE(BUFFER_SIZE),
+	.ARR_WIDTH(ARR_WIDTH), .ARR_HEIGHT(ARR_HEIGHT),
+	.SYS_WIDTH(SYS_WIDTH), .SYS_HEIGHT(SYS_HEIGHT)
+	) scratch_pad0 (
+		.clk(clk),
+		.step(step),
+		.act_bram_num(act_bram_num),
+		.act_bram_addr(act_bram_addr),
+		.act_bram_layer(act_bram_layer),
+		.data_received(data_received),
+		.data_address_into_ndp_unit(data_address_into_ndp_unit),
+		.data_out_a(into_ndp_a),
+		.weight_bram_num(weight_bram_num),
+		.weight_bram_addr(weight_bram_addr),
+		.weight_bram_layer(weight_bram_layer),
+		.data_out_b(into_ndp_b)
+	);
 
 NDP_unit #(
 	.WIDTH(WIDTH), 
