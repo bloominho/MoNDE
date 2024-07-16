@@ -30,7 +30,8 @@ module NDP_unit #(
 	output [ARR_WIDTH*SYS_WIDTH*ARR_HEIGHT*SYS_HEIGHT*WIDTH-1:0] 	out_c 			//Calculation result
 );
 
-//---Generate systolic arrays---
+
+//---Generate systolic arrays and Buffers---
 //---Systolic array number---
 genvar i;
 genvar j;
@@ -38,13 +39,41 @@ genvar j;
 genvar k;
 genvar l;
 
+wire [SYS_HEIGHT * ARR_HEIGHT * WIDTH - 1 : 0] into_sys_a; 	// Buffer -> Systolic Array
+wire [SYS_WIDTH * ARR_WIDTH * WIDTH - 1 : 0] into_sys_b;	// Buffer -> Systolic Array
+
 wire [SYS_HEIGHT - 1 :0] calc_done_flags_col;
 assign calc_done_flag = &calc_done_flags_col;
+
+//---Buffers---
 generate
-	for(i = 0; i < SYS_HEIGHT; i = i+1) begin : SYSROW
+	//---ACTION MATRIX (Saves a row)---
+	for(i=0; i<SYS_HEIGHT; i=i+1) begin
+		for(k=0; k<ARR_HEIGHT; k=k+1) begin
+			fifo_buffer #(.SIZE(k+1), .WIDTH(WIDTH)) ACT_BUFF (
+				.clk(clk), .reset(reset),
+				.in({WIDTH{{!in_done_flag}}} & in_a[i*ARR_HEIGHT*WIDTH + k*WIDTH +: WIDTH]),
+				.out(into_sys_a[i*ARR_HEIGHT*WIDTH + k*WIDTH +: WIDTH])
+			);
+		end
+	end
+	//---WEIGHT MATRIX (Saves a row)---
+	for(j=0; j<SYS_WIDTH; j=j+1) begin
+		for(l=0; l<ARR_WIDTH; l=l+1) begin
+			fifo_buffer #(.SIZE(l+1), .WIDTH(WIDTH)) ACT_BUFF (
+				.clk(clk), .reset(reset),
+				.in({WIDTH{{!in_done_flag}}} & in_b[j*ARR_WIDTH*WIDTH + l*WIDTH +: WIDTH]),
+				.out(into_sys_b[j*ARR_WIDTH*WIDTH + l*WIDTH +: WIDTH])
+			);
+		end
+	end
+
+	//---SYSTOLIC ARRAY---
+	for(i=0; i<SYS_HEIGHT; i=i+1) begin
 		wire [SYS_WIDTH - 1 : 0] calc_done_flags_row;
 		assign calc_done_flags_col[i] = &calc_done_flags_row;
-		for(j = 0; j < SYS_WIDTH; j = j+1) begin : SYSCOL
+
+		for(j=0; j<SYS_WIDTH; j=j+1) begin
 			wire [ARR_WIDTH * ARR_HEIGHT * WIDTH - 1 : 0] out_temp;		// Connection wire (array's output -> module output)
 
 			//---Systolic Array---
@@ -54,8 +83,8 @@ generate
 					.ARR_HEIGHT(ARR_HEIGHT), .ARR_WIDTH(ARR_WIDTH)
 				) SYS_ARRAY (
 					.clk(clk), .reset(reset), .in_done_flag(in_done_flag),
-					.in_a(in_a[ARR_HEIGHT*WIDTH*i +: ARR_HEIGHT*WIDTH]),
-					.in_b(in_b[ARR_WIDTH*WIDTH*j +: ARR_WIDTH*WIDTH]),
+					.in_a(into_sys_a[ARR_HEIGHT*WIDTH*i +: ARR_HEIGHT*WIDTH]),
+					.in_b(into_sys_b[ARR_WIDTH*WIDTH*j +: ARR_WIDTH*WIDTH]),
 					.SIMD_control(SIMD_control),
 					.calc_done_flag(calc_done_flags_row[j]),
 					.out_c(out_temp)

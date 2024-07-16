@@ -1,12 +1,11 @@
 # floating point
-rtl/adder.v
-rtl/multiplier.v
-rtl/priority_encoder.v
+rtl/1stage/adder.v
+rtl/1stage/multiplier.v
+rtl/1stage/priority_encoder.v
 
 
 # Under Construction
-rtl/NDP_core.v
-rtl/2stage/NDP_core.v
+rtl/1stage/NDP_core.v
 
 # Simulation File
 sim/a.out

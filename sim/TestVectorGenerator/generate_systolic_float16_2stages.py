@@ -9,7 +9,7 @@ span = 2.0
 A_HEIGHT = 4
 A_WIDTH = 5
 B_HEIGHT = A_WIDTH
-B_WIDTH = 4
+B_WIDTH = 256
 
 
 # --- Convert float -> binary ---
@@ -18,12 +18,11 @@ def bit(flt):
     return "{:016b}".format(bits)
 
 
-# --- Matrix Multiplication (with 2stages)---
+# --- Matrix Multiplication ---
 def matmul(A, B, I, J, K):
     C = np.empty(A_HEIGHT * B_WIDTH, dtype=np.float16)
     for i in range(I):
         for k in range(K):
-            # With 2 stages, 2 sets of sums are maintained
             sum1 = np.float16(0.0)
             sum2 = np.float16(0.0)
             for j in range(J-1, -1, -2):
@@ -32,7 +31,6 @@ def matmul(A, B, I, J, K):
             for j in range(J-2, -1, -2):
                 mul = np.float16(A[i * J + j] * B[j * K + k])
                 sum2 = np.float16(sum2 + mul)
-            # Finally, 2 sums are added
             C[i * K + k] = np.float16(sum1 + sum2)
     return C
 

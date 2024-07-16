@@ -36,11 +36,9 @@ always @(posedge clk) begin
 		out_b = 0;
 
 		step = 0;
-		
 	end else begin
 		if(IS_FLOAT == 1) begin
 			// --- Handling Floats ---
-
 			case (step)
 				3'd0: begin
 					//--- Odd set start
