@@ -20,7 +20,7 @@ module tb_NDP_core;
 
 	//---Testbench Data---
 	parameter MATRIX_A_HEIGHT = SYS_HEIGHT*ARR_HEIGHT;
-	parameter MATRIX_A_WIDTH = 3;
+	parameter MATRIX_A_WIDTH = 5;
 	parameter MATRIX_B_HEIGHT = MATRIX_A_WIDTH;
 	parameter MATRIX_B_WIDTH = SYS_WIDTH*ARR_WIDTH;
 
@@ -70,10 +70,10 @@ module tb_NDP_core;
 	//---1. Read Vectors---
 	initial
 	begin
-		$readmemb("./SystolicTestVector_2stage/TestVectorA", test_A);
-		$readmemb("./SystolicTestVector_2stage/TestVectorB", test_B);
-		$readmemb("./SystolicTestVector_2stage/TestVectorR", test_R);
-		results_file = $fopen("./SystolicTestVector_2stage/Results.txt");
+		$readmemb("../SystolicTestVector_2stage/TestVectorA", test_A);
+		$readmemb("../SystolicTestVector_2stage/TestVectorB", test_B);
+		$readmemb("../SystolicTestVector_2stage/TestVectorR", test_R);
+		results_file = $fopen("../SystolicTestVector_2stage/Results.txt");
 	end
 
 	//---2. Calculate & Assess---
@@ -175,8 +175,5 @@ module tb_NDP_core;
 			data_in = test_B[k][ARR_WIDTH*SYS_WIDTH*WIDTH*j+32*i +: 32];
 		end
 	end
-
-// always @(posedge clk)
-// 	$display("%d, %d, %h", i, j, data_in);
 
 endmodule

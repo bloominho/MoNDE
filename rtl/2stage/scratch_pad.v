@@ -15,19 +15,14 @@ module scratch_pad #(
 	input clk,
 	input [2:0] step,
 
-	input act_bram_num,
-	input act_bram_addr,
-	input [2:0] act_bram_layer,
+	input [5:0] bram_num,
+	input bram_addr,
+	input [2:0] bram_layer,
 
 	input [31:0] data_received,
 	input [2:0] data_address_into_ndp_unit,
 
 	output [ARR_HEIGHT*SYS_HEIGHT*WIDTH-1:0] data_out_a,
-
-	input [5:0] weight_bram_num,
-	input weight_bram_addr,
-	input [2:0] weight_bram_layer,
-
 	output [ARR_WIDTH*SYS_WIDTH*WIDTH-1:0] data_out_b
 );
 
@@ -40,8 +35,8 @@ module scratch_pad #(
 			bram_dual  #(.COUNT(BUFFER_SIZE*2)) bram_activation_X (
 				.clka(clk),
 				.ena(1'b1),
-				.wea((step == 3'd1) && (act_bram_num == i)),
-				.addra(act_bram_addr + 4'd2*act_bram_layer),
+				.wea((step == 3'd1) && (bram_num == i)),
+				.addra(bram_addr + 4'd2*bram_layer),
 				.dina(data_received),
 				.douta(),
 
@@ -62,8 +57,8 @@ module scratch_pad #(
 			bram_dual #(.COUNT(BUFFER_SIZE*2)) bram_weight_X (
 				.clka(clk),
 				.ena(1'b1),
-				.wea((step == 3'd2) && (weight_bram_num == j)),
-				.addra(weight_bram_addr + 4'd2*weight_bram_layer),
+				.wea((step == 3'd2) && (bram_num == j)),
+				.addra(bram_addr + 4'd2*bram_layer),
 				.dina(data_received),
 				.douta(),
 

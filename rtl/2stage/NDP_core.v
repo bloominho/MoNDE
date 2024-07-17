@@ -17,33 +17,33 @@ module NDP_core #(
 	input clk,
 	input reset,
 
-	input data_in_flag,
-	input [31:0] data_in,
+	input data_in_flag,				// Valid Data is comming in
+	input [31:0] data_in,			// Data fed into NDP core
+	output reg data_read_flag,		// Whether data is accepted by NDP core
 
-	output calc_done_flag, //When calculation is finished, signals 1
+	output calc_done_flag, 			//When calculation is finished, signals 1
 	output [ARR_WIDTH*SYS_WIDTH*ARR_HEIGHT*SYS_HEIGHT*WIDTH-1:0] 	out_c 			//Calculation result
 );
 
 parameter BUFFER_SIZE = 5;
 
-wire [ARR_HEIGHT*SYS_HEIGHT*WIDTH-1:0] into_ndp_a;
-wire [ARR_WIDTH*SYS_WIDTH*WIDTH-1:0] into_ndp_b;
-
-reg ndp_unit_in_done_flag;
 
 reg [2:0] step;
 reg [31:0] data_received;
+reg calculation_in_process;
 
-reg act_bram_num;
-reg act_bram_addr;
+//---Scratch Pad Control---
+reg [2:0] bram_layer;		
+reg [5:0] bram_num;			// BRAM Number
+reg bram_addr;			// Address
 
-reg [5:0] weight_bram_num;
-reg weight_bram_addr;
-reg [2:0] bram_layer;
-
-reg [2:0] data_address_into_ndp_unit;
-
+//---NDP Unit Control---
 reg NDP_unit_reset;
+reg [2:0] data_address_into_ndp_unit;				// Layer Number
+reg ndp_unit_in_done_flag;							// All data is fed into NDP unit
+reg [BUFFER_SIZE : 0] ndp_unit_in_done_count;		// Number of Data left that needs to be fed into NDP unit
+wire [ARR_HEIGHT*SYS_HEIGHT*WIDTH-1:0] into_ndp_a;
+wire [ARR_WIDTH*SYS_WIDTH*WIDTH-1:0] into_ndp_b;
 
 //---Scratch Pad---
 scratch_pad #(
@@ -53,15 +53,12 @@ scratch_pad #(
 	) scratch_pad0 (
 		.clk(clk),
 		.step(step),
-		.act_bram_num(act_bram_num),
-		.act_bram_addr(act_bram_addr),
-		.act_bram_layer(bram_layer),
+		.bram_num(bram_num),
+		.bram_addr(bram_addr),
+		.bram_layer(bram_layer),
 		.data_received(data_received),
 		.data_address_into_ndp_unit(data_address_into_ndp_unit),
 		.data_out_a(into_ndp_a),
-		.weight_bram_num(weight_bram_num),
-		.weight_bram_addr(weight_bram_addr),
-		.weight_bram_layer(bram_layer),
 		.data_out_b(into_ndp_b)
 	);
 
@@ -81,67 +78,74 @@ NDP_unit #(
 	.out_c(out_c)
 );
 
-reg [BUFFER_SIZE : 0] ndp_unit_in_done_count;
 
 always @(posedge clk) begin
 	if(reset) begin
 		step <= 3'd0;
 
-		act_bram_addr <=1'd0;
-		act_bram_num <= 1'd0;
+		//---Action Matrix Scratch Pad Location---
+		bram_addr <=1'd0;
+		bram_num <= 6'd0;
 		bram_layer <= 3'd0;
 
-		weight_bram_addr <=1'd0;
-		weight_bram_num <= 6'd0;
-		bram_layer <= 3'd0;
-
+		//--- NDP unit control---
 		data_address_into_ndp_unit <= 3'd0;
-
 		NDP_unit_reset <= 1'd1;
-
 		ndp_unit_in_done_flag <= 1'd0;
-
 		ndp_unit_in_done_count <= 2'b10;
+
+		data_read_flag <= 1'b0;
+		calculation_in_process <= 1'b0;
 	end else begin
 		case (step)
-			3'd0: begin
-				if(data_in_flag) begin
+			3'd0: begin		// Wait for data to be fed
+				if(data_in_flag) begin		// Data is fed into NDP_core
 					step <= 3'd1;
-					act_bram_addr <=1'd0;
-					act_bram_num <= 1'd0;
+					bram_addr <=1'd0;
+					bram_num <= 6'd0;
 					bram_layer <= 3'd0;
+					data_read_flag <= 1'b1;
 				end
 			end
-			3'd1: begin
-				if((act_bram_num == SYS_HEIGHT-1) && (act_bram_addr == 1'd1)) begin
+			3'd1: begin		// Activation Data
+				if((bram_num == SYS_HEIGHT-1) && (bram_addr == 1'd1)) begin
 					step <= 3'd2;
-					weight_bram_num <= 6'd0;
-					weight_bram_addr <= 1'd0;
-				end else if(act_bram_addr == 1'd1) begin
-					act_bram_num <= 1'd1;
-					act_bram_addr <= 1'd0;
+					bram_num <= 6'd0;
+					bram_addr <= 1'd0;
+				end else if(bram_addr == 1'd1) begin
+					bram_num <= 6'd1;
+					bram_addr <= 1'd0;
 				end else begin
-					act_bram_addr <= 1'd1;
+					bram_addr <= 1'd1;
 				end
 			end
-			3'd2: begin
-				if(~data_in_flag) begin
+			3'd2: begin		// Weight Data
+				if(~data_in_flag || 
+						((bram_layer == BUFFER_SIZE - 1) && 
+							(bram_num == SYS_WIDTH-1) && 
+							(bram_addr == 1'd1))) begin  	// Data Transfer Finished of Full Scratch Pad
 					step <= 3'd3;
-				end else if((weight_bram_num == SYS_WIDTH-1) && (weight_bram_addr == 1'd1)) begin
+					data_read_flag <= 1'b0;
+				end else if((bram_num == SYS_WIDTH-1) && (bram_addr == 1'd1)) begin
 					step <= 3'd1;
 					bram_layer <= bram_layer + 3'd1;
 					ndp_unit_in_done_count <= ndp_unit_in_done_count << 1;
-					act_bram_addr <=1'd0;
-					act_bram_num <= 1'd0;
-				end else if(weight_bram_addr == 1'd1) begin
-					weight_bram_num <= weight_bram_num + 1'b1;
-					weight_bram_addr <= 1'd0;
+					bram_addr <=1'd0;
+					bram_num <= 1'd0;
+				end else if(bram_addr == 1'd1) begin
+					bram_num <= bram_num + 6'b1;
+					bram_addr <= 1'd0;
 				end else begin
-					weight_bram_addr <= 1'd1;
+					bram_addr <= 1'd1;
 				end
 			end
 			3'd3: begin
-				NDP_unit_reset <= 1'b0;
+				if(~calculation_in_process) begin
+					NDP_unit_reset <= 1'b0;
+					calculation_in_process <= 1'b1;
+				end
+
+
 				if(ndp_unit_in_done_count[0]) begin
 					step <= 3'd4;
 					ndp_unit_in_done_flag <= 1'b1;

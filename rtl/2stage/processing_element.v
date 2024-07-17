@@ -32,52 +32,41 @@ reg [2:0] step;
 
 always @(posedge clk) begin
 	if(reset) begin
-		out_a = 0;
-		out_b = 0;
+		out_a <= 0;
+		out_b <= 0;
+		out_c <= 0;
+		add_in <= 0;
 
-		step = 0;
+		step <= 0;
 	end else begin
 		if(IS_FLOAT == 1) begin
 			// --- Handling Floats ---
+			out_c <= add_result;
 			case (step)
 				3'd0: begin
-					//--- Odd set start
-					add_in = 0;
-					step = 2'd1;
-				end
-				3'd1: begin
-					//--- Even set start
-					out_c = 0;
-					add_in = mult_result;
-					step = 2'd2;
-				end
-				3'd2: begin
-					//--- Start accumulating
-					out_c = 0;
-					add_in = mult_result;
-					step = 2'd3;
-				end
-				3'd3: begin
-					if(in_done_flag)begin
-						//--- If all data is fed, add two sums
-						add_in = add_result;
-						step = 3'd4;
+					if(in_done_flag) begin
+						step <= 3'd1;
 					end else begin
-						out_c = add_result;
-						add_in = mult_result;
+						add_in <= mult_result;
 					end
 				end
-				3'd4: begin
-					//---Final Answer
-					out_c = add_result;
+				3'd1: begin
+					add_in <= out_c;
+					step = 3'd2;
+				end
+				3'd2: begin
+					step <= 3'd3;
+				end
+				3'd3: begin
+					add_in <= 0;
 				end
 			endcase
 
-			out_a = in_a;
-			out_b = in_b;
+			out_a <= in_a;
+			out_b <= in_b;
 		end else begin
 			// --- Handling Integers ---
-			out_c = out_c + in_a * in_b;
+			out_c <= out_c + in_a * in_b;
 		end
 	end
 end
