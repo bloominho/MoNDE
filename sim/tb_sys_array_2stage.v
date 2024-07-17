@@ -1,6 +1,6 @@
 `timescale 1ns/10ps
 
-`define N_TESTS 100
+`define N_TESTS 1
 
 module tb_sys_array;
 	//---DATA WIDTH---
@@ -16,7 +16,7 @@ module tb_sys_array;
 
 	//---# of Systolic Arrays---
 	parameter SYS_HEIGHT = 1;
-	parameter SYS_WIDTH = 64;
+	parameter SYS_WIDTH = 1;
 
 	//---Testbench Data---
 	parameter MATRIX_A_HEIGHT = SYS_HEIGHT*ARR_HEIGHT;

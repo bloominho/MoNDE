@@ -36,11 +36,10 @@ reg [31:0] data_received;
 
 reg act_bram_num;
 reg act_bram_addr;
-reg [2:0] act_bram_layer;
 
 reg [5:0] weight_bram_num;
 reg weight_bram_addr;
-reg [2:0] weight_bram_layer;
+reg [2:0] bram_layer;
 
 reg [2:0] data_address_into_ndp_unit;
 
@@ -56,13 +55,13 @@ scratch_pad #(
 		.step(step),
 		.act_bram_num(act_bram_num),
 		.act_bram_addr(act_bram_addr),
-		.act_bram_layer(act_bram_layer),
+		.act_bram_layer(bram_layer),
 		.data_received(data_received),
 		.data_address_into_ndp_unit(data_address_into_ndp_unit),
 		.data_out_a(into_ndp_a),
 		.weight_bram_num(weight_bram_num),
 		.weight_bram_addr(weight_bram_addr),
-		.weight_bram_layer(weight_bram_layer),
+		.weight_bram_layer(bram_layer),
 		.data_out_b(into_ndp_b)
 	);
 
@@ -82,6 +81,7 @@ NDP_unit #(
 	.out_c(out_c)
 );
 
+reg [BUFFER_SIZE : 0] ndp_unit_in_done_count;
 
 always @(posedge clk) begin
 	if(reset) begin
@@ -89,17 +89,19 @@ always @(posedge clk) begin
 
 		act_bram_addr <=1'd0;
 		act_bram_num <= 1'd0;
-		act_bram_layer <= 3'd0;
+		bram_layer <= 3'd0;
 
 		weight_bram_addr <=1'd0;
 		weight_bram_num <= 6'd0;
-		weight_bram_layer <= 3'd0;
+		bram_layer <= 3'd0;
 
 		data_address_into_ndp_unit <= 3'd0;
 
 		NDP_unit_reset <= 1'd1;
 
 		ndp_unit_in_done_flag <= 1'd0;
+
+		ndp_unit_in_done_count <= 2'b10;
 	end else begin
 		case (step)
 			3'd0: begin
@@ -107,19 +109,14 @@ always @(posedge clk) begin
 					step <= 3'd1;
 					act_bram_addr <=1'd0;
 					act_bram_num <= 1'd0;
-					act_bram_layer <= 3'd0;
+					bram_layer <= 3'd0;
 				end
 			end
 			3'd1: begin
-				if((act_bram_layer == 3'd4) && (act_bram_num == SYS_HEIGHT-1) && (act_bram_addr == 1'd1)) begin
+				if((act_bram_num == SYS_HEIGHT-1) && (act_bram_addr == 1'd1)) begin
 					step <= 3'd2;
-					weight_bram_addr <=1'd0;
 					weight_bram_num <= 6'd0;
-					weight_bram_layer <= 3'd0;
-				end else if((act_bram_num == SYS_HEIGHT-1) && (act_bram_addr == 1'd1)) begin
-					act_bram_layer <= act_bram_layer + 1'd1;
-					act_bram_num <= 1'd0;
-					act_bram_addr <= 1'd0;
+					weight_bram_addr <= 1'd0;
 				end else if(act_bram_addr == 1'd1) begin
 					act_bram_num <= 1'd1;
 					act_bram_addr <= 1'd0;
@@ -128,12 +125,14 @@ always @(posedge clk) begin
 				end
 			end
 			3'd2: begin
-				if((weight_bram_layer == 3'd4) && (weight_bram_num == SYS_WIDTH-1) && (weight_bram_addr == 1'd1)) begin
+				if(~data_in_flag) begin
 					step <= 3'd3;
 				end else if((weight_bram_num == SYS_WIDTH-1) && (weight_bram_addr == 1'd1)) begin
-					weight_bram_layer <= weight_bram_layer + 3'd1;
-					weight_bram_num <= 6'd0;
-					weight_bram_addr <= 1'd0;
+					step <= 3'd1;
+					bram_layer <= bram_layer + 3'd1;
+					ndp_unit_in_done_count <= ndp_unit_in_done_count << 1;
+					act_bram_addr <=1'd0;
+					act_bram_num <= 1'd0;
 				end else if(weight_bram_addr == 1'd1) begin
 					weight_bram_num <= weight_bram_num + 1'b1;
 					weight_bram_addr <= 1'd0;
@@ -143,10 +142,11 @@ always @(posedge clk) begin
 			end
 			3'd3: begin
 				NDP_unit_reset <= 1'b0;
-				if(data_address_into_ndp_unit == BUFFER_SIZE) begin
+				if(ndp_unit_in_done_count[0]) begin
 					step <= 3'd4;
 					ndp_unit_in_done_flag <= 1'b1;
 				end else begin
+					ndp_unit_in_done_count <= ndp_unit_in_done_count >> 1;
 					data_address_into_ndp_unit <= data_address_into_ndp_unit + 1'b1;
 				end
 			end

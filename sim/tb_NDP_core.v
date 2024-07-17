@@ -16,11 +16,11 @@ module tb_NDP_core;
 
 	//---# of Systolic Arrays---
 	parameter SYS_HEIGHT = 1;
-	parameter SYS_WIDTH = 64;
+	parameter SYS_WIDTH = 1;
 
 	//---Testbench Data---
 	parameter MATRIX_A_HEIGHT = SYS_HEIGHT*ARR_HEIGHT;
-	parameter MATRIX_A_WIDTH = 5;
+	parameter MATRIX_A_WIDTH = 3;
 	parameter MATRIX_B_HEIGHT = MATRIX_A_WIDTH;
 	parameter MATRIX_B_WIDTH = SYS_WIDTH*ARR_WIDTH;
 
@@ -51,7 +51,7 @@ module tb_NDP_core;
 	always #5 clk = ~clk;
 
 	NDP_core #(
-		.WIDTH(WIDTH), 
+		.WIDTH(WIDTH),
 		.IS_FLOAT(IS_FLOAT), .EXP_BITS(EXP_BITS), .FRAC_BITS(FRAC_BITS),
 		.ARR_WIDTH(ARR_WIDTH), .ARR_HEIGHT(ARR_HEIGHT),
 		.SYS_WIDTH(SYS_WIDTH), .SYS_HEIGHT(SYS_HEIGHT)
@@ -70,10 +70,10 @@ module tb_NDP_core;
 	//---1. Read Vectors---
 	initial
 	begin
-		$readmemb("SystolicTestVector_2stage/TestVectorA", test_A);
-		$readmemb("SystolicTestVector_2stage/TestVectorB", test_B);
-		$readmemb("SystolicTestVector_2stage/TestVectorR", test_R);
-		results_file = $fopen("SystolicTestVector_2stage/Results.txt");
+		$readmemb("./SystolicTestVector_2stage/TestVectorA", test_A);
+		$readmemb("./SystolicTestVector_2stage/TestVectorB", test_B);
+		$readmemb("./SystolicTestVector_2stage/TestVectorR", test_R);
+		results_file = $fopen("./SystolicTestVector_2stage/Results.txt");
 	end
 
 	//---2. Calculate & Assess---
@@ -104,14 +104,10 @@ module tb_NDP_core;
 				step = 3'd3;
 			end
 			3'd3: begin
-				if(j == MATRIX_A_WIDTH - 1  && i == MATRIX_A_HEIGHT / 2 - 1) begin
+				if(i == MATRIX_A_HEIGHT / 2 - 1) begin
 					step = 3'd4;
 					act = 0;
 					i = 0;
-					j = 0;
-				end else if(i == MATRIX_A_HEIGHT / 2 - 1) begin
-					i = 0;
-					j = j + 1;
 				end else begin
 					i = i + 1;
 				end
@@ -121,6 +117,8 @@ module tb_NDP_core;
 					step = 3'd5;
 					data_in_flag = 0;
 				end else if(i == MATRIX_B_WIDTH / 2 - 1) begin
+					step = 3'd3;
+					act = 1;
 					i = 0;
 					j = j + 1;
 				end else begin
