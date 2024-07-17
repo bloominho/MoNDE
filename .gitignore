@@ -7,9 +7,13 @@ rtl/1stage/priority_encoder.v
 rtl/1stage/NDP_core.v
 
 # Simulation File
+a.out
 sim/xcelium/*
 simvision21485.diag
 .simvision/*
 
 # old, backup files
 old/*
+
+# synth files
+synth/*
