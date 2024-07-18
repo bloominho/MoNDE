@@ -5,6 +5,7 @@ rtl/1stage/priority_encoder.v
 
 # Under Construction
 rtl/1stage/NDP_core.v
+rtl/2stage/memory_controller.v
 
 # Simulation File
 a.out

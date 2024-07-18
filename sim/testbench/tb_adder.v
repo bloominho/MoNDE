@@ -48,10 +48,10 @@ module tb_adder;
 	//---1. Read Vectors---
 	initial
 	begin
-		$readmemb("AdderTestVector/TestVectorAddA", test_A);
-		$readmemb("AdderTestVector/TestVectorAddB", test_B);
-		$readmemb("AdderTestVector/TestVectorAddR", test_R);
-		results_file = $fopen("AdderTestVector/AddSimulResults.txt");
+		$readmemb("../AdderTestVector/TestVectorAddA", test_A);
+		$readmemb("../AdderTestVector/TestVectorAddB", test_B);
+		$readmemb("../AdderTestVector/TestVectorAddR", test_R);
+		results_file = $fopen("../AdderTestVector/AddSimulResults.txt");
 	end
 
 	//---2. Calculate & Assess---

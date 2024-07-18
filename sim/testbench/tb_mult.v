@@ -48,10 +48,10 @@ module tb_mult;
 	//---1. Read Vectors---
 	initial
 	begin
-		$readmemb("MultiplierTestVector/TestVectorMulA", test_A);
-		$readmemb("MultiplierTestVector/TestVectorMulB", test_B);
-		$readmemb("MultiplierTestVector/TestVectorMulR", test_R);
-		results_file = $fopen("MultiplierTestVector/MulSimulResults.txt");
+		$readmemb("../MultiplierTestVector/TestVectorMulA", test_A);
+		$readmemb("../MultiplierTestVector/TestVectorMulB", test_B);
+		$readmemb("../MultiplierTestVector/TestVectorMulR", test_R);
+		results_file = $fopen("../MultiplierTestVector/MulSimulResults.txt");
 	end
 
 	//---2. Calculate & Assess---

@@ -16,11 +16,11 @@ module tb_NDP_core;
 
 	//---# of Systolic Arrays---
 	parameter SYS_HEIGHT = 1;
-	parameter SYS_WIDTH = 1;
+	parameter SYS_WIDTH = 64;
 
 	//---Testbench Data---
 	parameter MATRIX_A_HEIGHT = SYS_HEIGHT*ARR_HEIGHT;
-	parameter MATRIX_A_WIDTH = 5;
+	parameter MATRIX_A_WIDTH = 21;
 	parameter MATRIX_B_HEIGHT = MATRIX_A_WIDTH;
 	parameter MATRIX_B_WIDTH = SYS_WIDTH*ARR_WIDTH;
 
@@ -43,6 +43,7 @@ module tb_NDP_core;
 	reg clk = 0;
 	reg reset;
 	reg data_in_flag = 0;
+	wire data_read_flag;
 	
 	//---Systolic Array Outputs---s
 	wire calc_done_flag;
@@ -60,6 +61,7 @@ module tb_NDP_core;
 		.reset(reset),
 		.data_in_flag(data_in_flag),
 		.data_in(data_in),
+		.data_read_flag(data_read_flag),
 		.calc_done_flag(calc_done_flag),
 		.out_c(simul_result)
 	);
@@ -104,25 +106,29 @@ module tb_NDP_core;
 				step = 3'd3;
 			end
 			3'd3: begin
-				if(i == MATRIX_A_HEIGHT / 2 - 1) begin
-					step = 3'd4;
-					act = 0;
-					i = 0;
-				end else begin
-					i = i + 1;
+				if(data_read_flag) begin
+					if(i == MATRIX_A_HEIGHT / 2 - 1) begin
+						step = 3'd4;
+						act = 0;
+						i = 0;
+					end else begin
+						i = i + 1;
+					end
 				end
 			end
 			3'd4: begin
-				if(j == MATRIX_A_WIDTH - 1  && i == MATRIX_B_WIDTH / 2 - 1) begin
-					step = 3'd5;
-					data_in_flag = 0;
-				end else if(i == MATRIX_B_WIDTH / 2 - 1) begin
-					step = 3'd3;
-					act = 1;
-					i = 0;
-					j = j + 1;
-				end else begin
-					i = i + 1;
+				if(data_read_flag) begin
+					if(j == MATRIX_A_WIDTH - 1  && i == MATRIX_B_WIDTH / 2 - 1) begin
+						step = 3'd5;
+						data_in_flag = 0;
+					end else if(i == MATRIX_B_WIDTH / 2 - 1) begin
+						step = 3'd3;
+						act = 1;
+						i = 0;
+						j = j + 1;
+					end else begin
+						i = i + 1;
+					end
 				end
 			end
 			3'd5: begin

@@ -74,10 +74,10 @@ module tb_sys_array;
 	//---1. Read Vectors---
 	initial
 	begin
-		$readmemb("SystolicTestVector/TestVectorA", test_A);
-		$readmemb("SystolicTestVector/TestVectorB", test_B);
-		$readmemb("SystolicTestVector/TestVectorR", test_R);
-		results_file = $fopen("SystolicTestVector/Results.txt");
+		$readmemb("../SystolicTestVector/TestVectorA", test_A);
+		$readmemb("../SystolicTestVector/TestVectorB", test_B);
+		$readmemb("../SystolicTestVector/TestVectorR", test_R);
+		results_file = $fopen("../SystolicTestVector/Results.txt");
 	end
 
 	//---2. Calculate & Assess---

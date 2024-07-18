@@ -27,8 +27,7 @@ wire [WIDTH - 1 : 0] mult_result;
 reg [WIDTH - 1 : 0] add_in;
 wire [WIDTH - 1 : 0] add_result;
 
-reg [2:0] step;
-
+reg [1:0] step;
 
 always @(posedge clk) begin
 	if(reset) begin
@@ -37,27 +36,28 @@ always @(posedge clk) begin
 		out_c <= 0;
 		add_in <= 0;
 
-		step <= 0;
+		step <= 2'd0;
 	end else begin
 		if(IS_FLOAT == 1) begin
 			// --- Handling Floats ---
-			out_c <= add_result;
 			case (step)
-				3'd0: begin
+				2'd0: begin		// DATA FEEDING (multiply and add)
 					if(in_done_flag) begin
-						step <= 3'd1;
-					end else begin
-						add_in <= mult_result;
+						step <= 2'd1;
 					end
+					out_c <= add_result;
+					add_in <= mult_result;
 				end
-				3'd1: begin
+				2'd1: begin		// ADD TWO SUMS
+					out_c <= add_result;
 					add_in <= out_c;
-					step = 3'd2;
+					step = 2'd2;
 				end
-				3'd2: begin
-					step <= 3'd3;
+				2'd2: begin
+					step <= 2'd3;
 				end
-				3'd3: begin
+				2'd3: begin
+					out_c <= add_result;
 					add_in <= 0;
 				end
 			endcase
