@@ -71,11 +71,7 @@ module top (
 	wire 		M_AHB_1_hwrite;
 
 	wire 		m_ahb_hclk;
-	//wire 		m_ahb_hclk_1;
-	wire 		m_ahb_hmastlock;
-	wire 		m_ahb_hmastlock_1;
 	wire 		m_ahb_hresetn;
-	// wire 	m_ahb_hresetn_1;
 
 	wire [1:0] 	register_set_0_hresp;
 
@@ -132,32 +128,30 @@ module top (
 
 
 		.m_ahb_hclk(m_ahb_hclk),
-		//    .m_ahb_hclk_1(m_ahb_hclk_1),
 		.m_ahb_resetn(m_ahb_hresetn)
-		//    .m_ahb_hresetn_1(m_ahb_hresetn_1)
 	);
 
 	//--- CONTROL SIGNALS ---
 	assign M_AHB_1_hresp = (register_set_1_hresp == 2'b00) ? 1'b0 : 1'b1;
 	signals_input signals_input_1 (
-		// AHB SIGNALS
-		.HCLK(m_ahb_hclk),
-		.HRESETn(m_ahb_hresetn),
-		.HSEL(1'b1),
-		.HADDR(M_AHB_1_haddr),
-		.HWRITE(M_AHB_1_hwrite),
-		.HTRANS(M_AHB_1_htrans),
-		.HSIZE(M_AHB_1_hsize),
-		.HWDATA(M_AHB_1_hwdata),
-		.HREADY(M_AHB_1_hready),
-		.HREADYin(M_AHB_1_hready),
-		.HRESP(register_set_1_hresp),
-		.HRDATA(M_AHB_1_hrdata),
+		// AHB SIGNALS (Input)
+		.HCLK		(m_ahb_hclk),
+		.HRESETn	(m_ahb_hresetn),
+		.HSEL		(1'b1),
+		.HADDR		(M_AHB_1_haddr),
+		.HWRITE		(M_AHB_1_hwrite),
+		.HTRANS		(M_AHB_1_htrans),
+		.HSIZE		(M_AHB_1_hsize),
+		.HWDATA		(M_AHB_1_hwdata),
+		.HREADY		(M_AHB_1_hready),
+		.HREADYin	(M_AHB_1_hready),
+		.HRESP		(register_set_1_hresp),
+		.HRDATA		(M_AHB_1_hrdata),
 
-		// CONTROL SIGNALS
-		.reset(register_set_1_reg0),
-		.start(register_set_1_reg1),
-		.finished(register_set_1_reg2)
+		// CONTROL SIGNALS (Output)
+		.reset		(register_set_1_reg0),
+		.start		(register_set_1_reg1),
+		.finished	(register_set_1_reg2)
 	);
 
 	//--- Matrix Data ---
@@ -170,7 +164,7 @@ module top (
 	wire [31:0]		write_M_AHB_hrdata;
 
 	ahb_decoder ahb_decoder_1 (
-		//---AHB -> DECODER ---
+		//---AHB -> Decoder ---
 		.HRESETn ( m_ahb_hresetn ),
 		.BIGEND ( 1'b0 ),
 		.PORT1HCLK ( m_ahb_hclk ),
@@ -184,9 +178,10 @@ module top (
 		.PORT1HADDR ( M_AHB_haddr ),
 		.PORT1HREADYOUT ( M_AHB_hready ),
 		.PORT1HRESP (register_set_0_hresp ),
-
+		
+		//--- Scratch Pad -> Decoder ---
 		.from_scratch_pad_HRDATA (from_scratch_pad_HRDATA),
-		//--- DECODER -> Scratch Pad ---
+		//--- Decoder -> Scratch Pad ---
 		.to_scratch_pad_en 		(to_scratch_pad_en),
 		.to_scratch_pad_wen 	(to_scratch_pad_wen),
 		.to_scratch_pad_addr	(to_scratch_pad_addr),
@@ -202,7 +197,7 @@ module top (
 
 		.reset_in		(register_set_1_reg0[0]),
 		.start_in		(register_set_1_reg1[0]),
-		.finished_in	(register_set_1_reg2[0]),
+		.finish_in		(register_set_1_reg2[0]),
 
 		.to_scratch_pad_en	(to_scratch_pad_en),
 		.to_scratch_pad_wen	(to_scratch_pad_wen),

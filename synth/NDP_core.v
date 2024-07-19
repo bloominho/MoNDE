@@ -20,7 +20,7 @@ module NDP_core #(
 	//--- Control Signals ---
 	input reset_in,
 	input start_in,
-	input finished_in,
+	input finish_in,
 
 	//---Scratch Pad---
 	input 			to_scratch_pad_en,
@@ -44,6 +44,12 @@ reg 		reset_old;
 reg 		start_old;
 wire 		reset = ~reset_old & reset_in;
 wire 		start = ~start_old & start_in;
+
+//--- Signals Generation ---
+always @(posedge ndp_unit_clk) begin
+	reset_old <= reset_in;
+	start_old <= start_in;
+end
 
 //---Scratch Pad Control---
 reg [2:0] 	bram_layer;		
@@ -99,34 +105,7 @@ NDP_unit #(
 	.out_c(out_c)
 );
 
-
-//--- Signals Generation ---
 always @(posedge scratch_pad_clk) begin
-	reset_old <= reset_in;
-	start_old <= start_in;
-end
-
-always @(posedge scratch_pad_clk) begin
-	reset_old <= reset_in;
-	start_old <= start_in;
-
-
-	if(reset) begin
-		HREADY <= 1'b1;
-		
-		//--- NDP Unit Control--
-		NDP_unit_lock <= 1'b1;
-		ndp_unit_in_done_flag <= 1'd0;
-		calculating <= 1'b0;
-
-		calc_done_flag <= 1'b0;
-	end else if(start) begin
-		calculating <= 1'b1;
-		HREADY <= 1'b0;
-		data_address_into_ndp_unit <= 3'd0;
-	end
-
-
 	case(data_addr[9:7])
 		3'd0:begin
 			if(~(&ndp_unit_in_done_count[5:2]))
@@ -150,29 +129,40 @@ always @(posedge scratch_pad_clk) begin
 	endcase
 end
 
-
+reg [BUFFER_SIZE : 0] 	ndp_unit_in_done_count_now;		
 always @(posedge ndp_unit_clk) begin
-	if(calculating) begin
-		if(~ndp_unit_in_done_count[0]) begin
+	if(reset) begin
+		HREADY <= 1'b1;
 
-			NDP_unit_lock <= 1'b0;
-			ndp_unit_in_done_count <= ndp_unit_in_done_count >> 1;
-			data_address_into_ndp_unit <= data_address_into_ndp_unit + 1'b1;
+		NDP_unit_lock <= 1'b1;
+		ndp_unit_in_done_flag <= 1'b0;
 
-		end else begin	// All Data in Scratch Pad is Fed into NDP Unit
+		calculating <= 1'b0;
+	end else begin
+		if(calculating) begin
+			if(ndp_unit_in_done_count_now[0]) begin
+				NDP_unit_lock <= 1'b1;
 
-			NDP_unit_lock <= 1'b1;
-			
-			if(to_scratch_pad_wen) begin 		// More data is waiting from memory
-				calculating <= 1'b0;
-				HREADY <= 1'b1;
-			end else if (finished_in) begin
-				ndp_unit_in_done_flag <= 1'b1;
+				if(ndp_unit_in_done_flag) begin
+					if(NDP_calc_done_flag) begin
+						calc_done_flag <= 1'b1;
+					end
+				end else if(finish) begin
+					ndp_unit_in_done_flag <= 1'b1;
+				end else if(to_scratch_pad_wen) begin
+					HREADY <= 1'b1;
+					calculating <= 1'b0;
+				end
+			end else begin
+				NDP_unit_lock <= 1'b0;
+				ndp_unit_in_done_count_now <= ndp_unit_in_done_count_now >> 1;
+				data_address_into_ndp_unit <= data_address_into_ndp_unit + 1'b1;
 			end
-
-			if(NDP_calc_done_flag) begin
-				calc_done_flag <= 1'b1;
-			end
+		end else if(start) begin
+			HREADY <= 1'b0;
+			calculating <= 1'b1;
+			ndp_unit_in_done_count_now <= ndp_unit_in_done_count;
+			data_address_into_ndp_unit <= 1'b0;
 		end
 	end
 end
