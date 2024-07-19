@@ -73,45 +73,23 @@ end
 
 wire [2:0] round_mode = 3'b000;
 
-DW_lp_piped_fp_mult #(10, 5, 1, 0, 8, 0, PIPE_STAGE, 0, 1, 0) multiplier (
-	.clk(clk),
-	.rst_n(!reset),
-	.a(in_a),
-	.b(in_b),
-	.rnd(round_mode),
-	.z(mult_result),
-	.status(),
-	.launch(1'b1),
-	.launch_id(),
-	.pipe_full(),
-	.pipe_ovf(),
-	.accept_n(1'b0),
-	.arrive(),
-	.arrive_id(),
-	.push_out_n(),
-	.pipe_census()
+floating_point_mult multiplier (
+	.aclk(clk),
+	.s_axis_a_tdata(in_a),
+	.s_axis_a_tvalid(1'b1),
+	.s_axis_b_tdata(in_b),
+	.s_axis_b_tvalid(1'b1),
+	.m_axis_result_tdata(mult_result)
 );
 
 
-DW_lp_piped_fp_add #(10, 5, 1, 0, 8, 0, PIPE_STAGE, 0, 1, 0) adder (
-	.clk(clk),
-	.rst_n(!reset),
-	.a(out_c),
-	.b(add_in),
-	.rnd(round_mode),
-	.z(add_result),
-	.status(),
-	.launch(1'b1),
-	.launch_id(),
-	.pipe_full(),
-	.pipe_ovf(),
-	.accept_n(1'b0),
-	.arrive(),
-	.arrive_id(),
-	.push_out_n(),
-	.pipe_census()
+floating_point_add adder (
+	.aclk(clk),
+	.s_axis_a_tdata(out_c),
+	.s_axis_a_tvalid(1'b1),
+	.s_axis_b_tdata(add_in),
+	.s_axis_b_tvalid(1'b1),
+	.m_axis_result_tdata(add_result)
 );
-
-
 
 endmodule

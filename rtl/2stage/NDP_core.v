@@ -105,15 +105,17 @@ always @(posedge clk) begin
 				end
 			end
 			3'd1: begin 	// Activation Data is Fed into Scratch Pad
-				if((bram_num == SYS_HEIGHT-1) && (bram_addr == 1'd1)) begin
-					step <= 3'd2;
-					bram_num <= 6'd0;
-					bram_addr <= 1'd0;
-				end else if(bram_addr == 1'd1) begin
-					bram_num <= 6'd1;
-					bram_addr <= 1'd0;
-				end else begin
-					bram_addr <= 1'd1;
+				if(data_in_flag) begin
+					if((bram_num == SYS_HEIGHT-1) && (bram_addr == 1'd1)) begin
+						step <= 3'd2;
+						bram_num <= 6'd0;
+						bram_addr <= 1'd0;
+					end else if(bram_addr == 1'd1) begin
+						bram_num <= 6'd1;
+						bram_addr <= 1'd0;
+					end else begin
+						bram_addr <= 1'd1;
+					end
 				end
 			end
 			3'd2: begin		// Weight Data is Fed into Scratch Pad
@@ -124,19 +126,23 @@ always @(posedge clk) begin
 					step <= 3'd3;
 					data_address_into_ndp_unit <= 3'd0;
 					data_read_flag <= 1'b0;
-				end else if((bram_num == SYS_WIDTH-1) && (bram_addr == 1'd1)) begin
-					step <= 3'd1;
-
-					bram_layer <= bram_layer + 3'd1;
-					bram_addr <=1'd0;
-					bram_num <= 1'd0;
-
-					ndp_unit_in_done_count <= ndp_unit_in_done_count << 1;
-				end else if(bram_addr == 1'd1) begin
-					bram_num <= bram_num + 6'b1;
-					bram_addr <= 1'd0;
 				end else begin
-					bram_addr <= 1'd1;
+					if(data_in_flag) begin
+						if((bram_num == SYS_WIDTH-1) && (bram_addr == 1'd1)) begin
+							step <= 3'd1;
+
+							bram_layer <= bram_layer + 3'd1;
+							bram_addr <=1'd0;
+							bram_num <= 1'd0;
+
+							ndp_unit_in_done_count <= ndp_unit_in_done_count << 1;
+						end else if(bram_addr == 1'd1) begin
+							bram_num <= bram_num + 6'b1;
+							bram_addr <= 1'd0;
+						end else begin
+							bram_addr <= 1'd1;
+						end
+					end
 				end
 			end
 			3'd3: begin		// Accumulate
