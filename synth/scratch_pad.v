@@ -15,7 +15,7 @@ module scratch_pad #(
 	input write_clk,
 	input read_clk,
 
-	input			en;
+	input			en,
 	input 			wen,
 	input 			bram_type,
 	input [2:0] 	bram_layer,

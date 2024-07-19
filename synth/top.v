@@ -23,7 +23,7 @@ module top (
 	inout 			FIXED_IO_ps_porb,
 	inout 			FIXED_IO_ps_srstb,
 
-	output 			led
+	output 			GPIO_LED_RIGHT
 );
 	// --- PARAMETERS ---------------------------------------
 
@@ -85,21 +85,21 @@ module top (
 	wire [31:0]	register_set_1_reg2;
 
 	system_wrapper usystem_wrapper (
-		.DDR_addr(DDR_addr),
-		.DDR_ba(DDR_ba),
-		.DDR_cas_n(DDR_cas_n),
-		.DDR_ck_n(DDR_ck_n),
-		.DDR_ck_p(DDR_ck_p),
-		.DDR_cke(DDR_cke),
-		.DDR_cs_n(DDR_cs_n),
-		.DDR_dm(DDR_dm),
-		.DDR_dq(DDR_dq),
-		.DDR_dqs_n(DDR_dqs_n),
-		.DDR_dqs_p(DDR_dqs_p),
-		.DDR_odt(DDR_odt),
-		.DDR_ras_n(DDR_ras_n),
-		.DDR_reset_n(DDR_reset_n),
-		.DDR_we_n(DDR_we_n),
+		.DDR_0_addr(DDR_addr),
+		.DDR_0_ba(DDR_ba),
+		.DDR_0_cas_n(DDR_cas_n),
+		.DDR_0_ck_n(DDR_ck_n),
+		.DDR_0_ck_p(DDR_ck_p),
+		.DDR_0_cke(DDR_cke),
+		.DDR_0_cs_n(DDR_cs_n),
+		.DDR_0_dm(DDR_dm),
+		.DDR_0_dq(DDR_dq),
+		.DDR_0_dqs_n(DDR_dqs_n),
+		.DDR_0_dqs_p(DDR_dqs_p),
+		.DDR_0_odt(DDR_odt),
+		.DDR_0_ras_n(DDR_ras_n),
+		.DDR_0_reset_n(DDR_reset_n),
+		.DDR_0_we_n(DDR_we_n),
 
 		.FIXED_IO_ddr_vrn(FIXED_IO_ddr_vrn),
 		.FIXED_IO_ddr_vrp(FIXED_IO_ddr_vrp),
@@ -133,9 +133,7 @@ module top (
 
 		.m_ahb_hclk(m_ahb_hclk),
 		//    .m_ahb_hclk_1(m_ahb_hclk_1),
-		.m_ahb_hmastlock(m_ahb_hmastlock),
-		.m_ahb_hmastlock_1(m_ahb_hmastlock_1),
-		.m_ahb_hresetn(m_ahb_hresetn)
+		.m_ahb_resetn(m_ahb_hresetn)
 		//    .m_ahb_hresetn_1(m_ahb_hresetn_1)
 	);
 
@@ -159,7 +157,7 @@ module top (
 		// CONTROL SIGNALS
 		.reset(register_set_1_reg0),
 		.start(register_set_1_reg1),
-		.finished(register_set_1_reg2),
+		.finished(register_set_1_reg2)
 	);
 
 	//--- Matrix Data ---
@@ -191,8 +189,8 @@ module top (
 		//--- DECODER -> Scratch Pad ---
 		.to_scratch_pad_en 		(to_scratch_pad_en),
 		.to_scratch_pad_wen 	(to_scratch_pad_wen),
-		.to_scratch_pad_addr	(to_scratch_pad_addr)
-		.to_scratch_pad_wdata 	(to_scratch_pad_wdata),
+		.to_scratch_pad_addr	(to_scratch_pad_addr),
+		.to_scratch_pad_wdata 	(to_scratch_pad_wdata)
 	);
 
 	wire [ARR_WIDTH*SYS_WIDTH*ARR_HEIGHT*SYS_HEIGHT*WIDTH-1:0] out_c;
@@ -214,13 +212,9 @@ module top (
 		.HREADY		(NDP_HREADY),			// Whether data is accepted by NDP core
 		.HRDATA		(from_scratch_pad_HRDATA),
 
-		.calc_done_flag	(led),
+		.calc_done_flag	(GPIO_LED_RIGHT),
 		.out_c			(out_c)
 	);
-
-	always @(posedge m_ahb_hclk) begin
-		read_M_AHB_hrdata <= out_c[M_AHB_haddr[]]
-	end 
 
 
 

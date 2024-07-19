@@ -66,7 +66,7 @@ scratch_pad #(
 	.ARR_WIDTH(ARR_WIDTH), .ARR_HEIGHT(ARR_HEIGHT),
 	.SYS_WIDTH(SYS_WIDTH), .SYS_HEIGHT(SYS_HEIGHT)
 ) scratch_pad0 (
-	.write_clk	(scratch_pad_clk)
+	.write_clk	(scratch_pad_clk),
 	.read_clk	(clk),
 
 	.en				(to_scratch_pad_en),
@@ -166,7 +166,7 @@ always @(posedge ndp_unit_clk) begin
 			if(to_scratch_pad_wen) begin 		// More data is waiting from memory
 				calculating <= 1'b0;
 				HREADY <= 1'b1;
-			end else if (finished) begin
+			end else if (finished_in) begin
 				ndp_unit_in_done_flag <= 1'b1;
 			end
 

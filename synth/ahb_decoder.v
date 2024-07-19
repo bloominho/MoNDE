@@ -15,7 +15,7 @@ module ahb_decoder (
 	output [1:0]	PORT1HRESP,
 
 	//--- Scratch Pad -> DECODER ---
-	input 			from_scratch_pad_HRDATA;
+	input 			from_scratch_pad_HRDATA,
 	//--- DECODER -> Scratch Pad ---
 	output 			to_scratch_pad_en,
 	output			to_scratch_pad_wen,
