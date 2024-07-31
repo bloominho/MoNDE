@@ -54,8 +54,6 @@ module NDP_core (
 	// Scratch Pad
 	reg [10:0] 				data_in_addr;
 	reg [5:0]				buffer_filled;
-	reg						s_axis_tready_old;
-	reg						s_axis_tvalid_old;
 	reg	[9:0]				m_axis_taddr;
 
 	// NDP_unit
@@ -66,9 +64,7 @@ module NDP_core (
 	reg 					NDP_unit_reset;
 
 	// NDP_unit control > Scratch Pad control
-	reg						psum_calc_done_old;
 	wire 					NDP_calc_done;
-	reg						NDP_calc_done_old;
 	reg [2:0] 				data_out_addr;
 
 	// Scratch Pad control -> NDP_unit control
@@ -82,8 +78,6 @@ module NDP_core (
 
 	
 	assign m_axis_tdata = NDP_out >> 32*m_axis_taddr;
-
-	// assign m_axis_tdata = NDP_out[m_axis_taddr*32 +: 32];
 
 
 //--- Scratch Pad ------------------------------------------
