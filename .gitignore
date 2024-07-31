@@ -1,19 +1,11 @@
-# floating point
-rtl/1stage/adder.v
-rtl/1stage/multiplier.v
-rtl/1stage/priority_encoder.v
-
-# Under Construction
-rtl/1stage/NDP_core.v
-rtl/2stage/memory_controller.v
-
 # Simulation File
-a.out
-sim/xcelium/*
+.simvision
+sim/xcelium
+sim/xcelium_synth
 simvision21485.diag
-.simvision/*
 
 # old, backup files
 old/*
 
 # synth files
+synth
