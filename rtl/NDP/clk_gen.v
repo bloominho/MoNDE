@@ -12,7 +12,7 @@ reg [5:0] clk_count;
 
 always @(posedge original_clock) begin
 	if(~reset_in) begin
-		clock_1x		<= 1'b0;
+		clock_1x		<= 1'b1;
 		clock_slower	<= 1'b0;
 
 		clk_count		<= 6'b0;
