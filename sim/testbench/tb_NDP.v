@@ -52,7 +52,7 @@ module tb_top;
     wire			clock_axi;
 
 //--- AXI MASTER & SLAVE signals---
-	reg [32:0] m_axis_tdata;
+	reg [31:0] m_axis_tdata;
 	wire 		m_axis_tkeep;
 	reg 		m_axis_tlast;
 	reg 		m_axis_tvalid;
