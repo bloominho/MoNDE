@@ -53,7 +53,9 @@ always @(posedge clka) begin
 	end else begin
 		data <= data;
 	end
+end
 
+always @(posedge clkb) begin
 	doutb <= data[B_WIDTH * addrb +: B_WIDTH];
 end
 

@@ -2,7 +2,9 @@ module NDP_core (
 	//--- Clock & Reset ---
 	input			axi_aclk,
 	input			axi_aresetn,
-	input 			ps_clk,
+
+	output 			clock_pl,
+    output			clock_axi,
 
 	//--- Data In (AXI4-Stream)---
 	input 		[31:0] 	s_axis_tdata,
@@ -20,6 +22,9 @@ module NDP_core (
 );
 
 //--- PARAMETERS -----------------
+	//--- Clock Ratio ----
+	parameter CLOCK_RATIO = 5;
+
 	//---DATA WIDTH---
 	parameter WIDTH=16;
 
@@ -39,11 +44,10 @@ module NDP_core (
 
 
 //--- Nets and Registers -----------
+
 	// Scratch Pad
 	reg [10:0] 				data_in_addr;
 	reg [5:0]				buffer_filled;
-	reg						s_axis_tready_old;
-	reg						s_axis_tvalid_old;
 	reg	[9:0]				m_axis_taddr;
 
 	// NDP_unit
@@ -54,9 +58,7 @@ module NDP_core (
 	reg 					NDP_unit_reset;
 
 	// NDP_unit control > Scratch Pad control
-	reg						psum_calc_done_old;
 	wire 					NDP_calc_done;
-	reg						NDP_calc_done_old;
 	reg [2:0] 				data_out_addr;
 
 	// Scratch Pad control -> NDP_unit control
@@ -71,6 +73,16 @@ module NDP_core (
 	
 	assign m_axis_tdata = NDP_out >> 32*m_axis_taddr;
 
+//--- Clock Generation ------------------------------------
+	clk_gen #(
+		.RATIO				(CLOCK_RATIO)
+	) clk_gen0 (
+		.reset_in			(axi_aresetn),
+		.original_clock		(axi_aclk),
+		
+		.clock_1x			(clock_axi),
+		.clock_slower		(clock_pl)
+	);
 
 //--- Scratch Pad ------------------------------------------
 	scratch_pad #(
@@ -88,8 +100,8 @@ module NDP_core (
 		.ARR_HEIGHT(ARR_HEIGHT)
 	)scratch_pad0 (
 		//--- Clocks ------------------------------
-		.write_clk	(axi_aclk),
-		.read_clk	(ps_clk),
+		.write_clk	(clock_axi),
+		.read_clk	(clock_pl),
 
 		//--- Data In -----------------------------
 		.wen			(s_axis_tready & s_axis_tvalid),
@@ -121,7 +133,7 @@ module NDP_core (
 		.ARR_HEIGHT(ARR_HEIGHT)
 	) ndp_unit_0 (
 		//--- Clock & Reset ---
-		.clk			(ps_clk),
+		.clk			(clock_pl),
 		.reset			(NDP_unit_reset),
 
 		//--- Data In ---------
@@ -139,7 +151,7 @@ module NDP_core (
 //--- Control ----------------------------------------------
 	//--- Scratch Pad ADDRESS CONTROL ----------
 	reg [2:0] scratch_pad_step;
-	always @(posedge axi_aclk) begin
+	always @(posedge clock_axi or negedge axi_aresetn) begin
 		if(~axi_aresetn) begin
 			scratch_pad_step <= 3'b0;
 		end else begin
@@ -229,7 +241,7 @@ module NDP_core (
 	reg trigger;
 	reg trigger_target;
 
-	always @(posedge ps_clk) begin
+	always @(posedge clock_pl or posedge NDP_reset) begin
 		if(NDP_reset) begin
 			NDP_step <= 2'b0;
 			NDP_unit_reset <= 1'b1;
