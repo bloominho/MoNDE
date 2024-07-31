@@ -2,8 +2,6 @@ module scratch_pad #(
 	//---DATA WIDTH---
 	parameter WIDTH=16,
 
-	parameter BUFFER_SIZE = 5,
-
 	//---Number of PEs in each systolic array---
 	parameter SYS_WIDTH = 64,
 	parameter SYS_HEIGHT = 1,
@@ -18,11 +16,11 @@ module scratch_pad #(
 
 	//--- Data In ---------------
 	input 			wen,
-	input [10:0] 	data_in_addr,
+	input [8:0] 	data_in_addr,
 	input [31:0] 	data_in,
 
 	//--- Data Out ---------------
-	input [2:0] 	data_out_addr,
+	input 		 	data_out_addr,
 	output [ARR_HEIGHT*SYS_HEIGHT*WIDTH-1:0] 	data_out_a,
 	output [ARR_WIDTH*SYS_WIDTH*WIDTH-1:0] 		data_out_b
 );
@@ -38,7 +36,7 @@ generate
 			.clka(write_clk),
 			.ena(1'b1),
 			.wea(data_in_addr[7:1] == i && wen),
-			.addra({data_in_addr[10:8], data_in_addr[0]}),
+			.addra({data_in_addr[8], data_in_addr[0]}),
 			.dina(data_in),
 			.douta(),
 

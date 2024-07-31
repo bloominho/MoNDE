@@ -4,10 +4,10 @@ module bram #(
 	parameter A_WIDTH = 32,
 	parameter A_WIDTH_COUNT = 2,
 	parameter A_HEIGHT_COUNT = 5,
-	parameter A_ADDRESS_WIDTH = 4,
+	parameter A_ADDRESS_WIDTH = 2,
 
 	parameter B_WIDTH = 64,
-	parameter B_ADDRESS_WIDTH = 3
+	parameter B_ADDRESS_WIDTH = 1
 ) (	
 	input clka,
 	input ena,
@@ -37,18 +37,6 @@ always @(posedge clka) begin
 				data[2 * A_WIDTH + A_WIDTH - 1 : 2 * A_WIDTH] <= dina;
 			4'd3:
 				data[3 * A_WIDTH + A_WIDTH - 1 : 3 * A_WIDTH] <= dina;
-			4'd4:
-				data[4 * A_WIDTH + A_WIDTH - 1 : 4 * A_WIDTH] <= dina;
-			4'd5:
-				data[5 * A_WIDTH + A_WIDTH - 1 : 5 * A_WIDTH] <= dina;
-			4'd6:
-				data[6 * A_WIDTH + A_WIDTH - 1 : 6 * A_WIDTH] <= dina;
-			4'd7:
-				data[7 * A_WIDTH + A_WIDTH - 1 : 7 * A_WIDTH] <= dina;
-			4'd8:
-				data[8 * A_WIDTH + A_WIDTH - 1 : 8 * A_WIDTH] <= dina;
-			4'd9:
-				data[9 * A_WIDTH + A_WIDTH - 1 : 9 * A_WIDTH] <= dina;
 		endcase
 	end else begin
 		data <= data;

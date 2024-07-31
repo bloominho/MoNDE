@@ -8,14 +8,12 @@ module NDP_core (
 
 	//--- Data In (AXI4-Stream)---
 	input 		[31:0] 	s_axis_tdata,
-	input 		[7:0]	s_axis_tkeep,
 	input 				s_axis_tlast,
 	input				s_axis_tvalid,
 	output reg			s_axis_tready,
 
 	//--- Data Out (AXI4-Stream) ---
 	output  	[31:0]	m_axis_tdata,
-	output reg 	[7:0]	m_axis_tkeep,
 	output reg 			m_axis_tlast,
 	output reg			m_axis_tvalid,
 	input				m_axis_tready
@@ -23,7 +21,7 @@ module NDP_core (
 
 //--- PARAMETERS -----------------
 	//--- Clock Ratio ----
-	parameter CLOCK_RATIO = 5;
+	parameter CLOCK_RATIO = 63;
 
 	//---DATA WIDTH---
 	parameter WIDTH=16;
@@ -40,26 +38,21 @@ module NDP_core (
 	parameter SYS_WIDTH = 16;
 	parameter SYS_HEIGHT = 1;
 
-	parameter BUFFER_SIZE = 5;
-
 
 //--- Nets and Registers -----------
 
 	// Scratch Pad
-	reg [10:0] 				data_in_addr;
-	reg [5:0]				buffer_filled;
+	reg [8:0] 				data_in_addr;
 	reg	[9:0]				m_axis_taddr;
 
 	// NDP_unit
+	reg 					NDP_unit_reset;
 	reg 					NDP_lock;
 	reg 					NDP_in_done;
-	reg [5:0]				buffer_filled_in;
-	reg						psum_calc_done;
-	reg 					NDP_unit_reset;
 
 	// NDP_unit control > Scratch Pad control
 	wire 					NDP_calc_done;
-	reg [2:0] 				data_out_addr;
+	reg 	 				data_out_addr;
 
 	// Scratch Pad control -> NDP_unit control
 	reg						tlast_in;
@@ -68,7 +61,7 @@ module NDP_core (
 	wire [SYS_HEIGHT*ARR_HEIGHT*SYS_WIDTH*ARR_WIDTH*WIDTH - 1 : 0] 	NDP_out;
 
 	wire [SYS_HEIGHT*ARR_HEIGHT*WIDTH - 1:0] 			NDP_in_a;
-	wire [SYS_WIDTH*ARR_WIDTH*WIDTH - 1:0] 			NDP_in_b;
+	wire [SYS_WIDTH*ARR_WIDTH*WIDTH - 1:0] 				NDP_in_b;
 
 	
 	assign m_axis_tdata = NDP_out >> 32*m_axis_taddr;
@@ -88,8 +81,6 @@ module NDP_core (
 	scratch_pad #(
 		//---DATA WIDTH---
 		.WIDTH(WIDTH),
-
-		.BUFFER_SIZE(BUFFER_SIZE),
 
 		//---Number of PEs in each systolic array---
 		.SYS_WIDTH(SYS_WIDTH),
@@ -160,7 +151,6 @@ module NDP_core (
 					// READ
 					s_axis_tready <= 1'b1;
 					data_in_addr <= 11'b0;
-					buffer_filled <= 0;
 
 					NDP_reset <= 1'b1;
 
@@ -168,7 +158,6 @@ module NDP_core (
 					m_axis_taddr	<= 10'b0;
 					m_axis_tvalid	<= 1'b0;
 					m_axis_tlast	<= 1'b0;
-					m_axis_tkeep	<= 8'hFF;
 
 					tlast_in		<= 1'b0;
 
@@ -179,31 +168,24 @@ module NDP_core (
 					
 					if(s_axis_tready & s_axis_tvalid) begin
 						//---Activate reading (RAM -> Scratch Pad)
-						if((data_in_addr[10:8] == BUFFER_SIZE-1 & data_in_addr[7:1] == SYS_WIDTH && data_in_addr[0]) || s_axis_tlast) begin
-							//---Next Layer
-							buffer_filled 		<= buffer_filled + 1'b1;
-							s_axis_tready 		<= 1'b0;
+						if(data_in_addr[7:1] == SYS_WIDTH && data_in_addr[0]) begin
+							//--- Buffer Full ---
 							tlast_in 			<= s_axis_tlast;
-							scratch_pad_step 	<= 3'd2;
-						end else if(data_in_addr[7:1] == SYS_WIDTH && data_in_addr[0]) begin
-							//---Next Bram
-							data_in_addr[10:8] 	<= data_in_addr[10:8] + 1'b1;
+							data_in_addr[8] 	<= ~data_in_addr[8];
 							data_in_addr[7:0] 	<= 8'b0;
-							buffer_filled 		<= buffer_filled + 1;
+							scratch_pad_step 	<= 3'd2;
+							s_axis_tready 		<= 1'b0;
 						end else begin
 							//---Next Address
 							data_in_addr[7:0] 	<= data_in_addr[7:0] + 1'b1;
 						end
 					end
 				end
-				3'd2: begin		// Wait for calculation to finish
+				3'd2: begin
 						if(~tlast_in) begin
-							//---Resume reading
-							if(psum_calc_done) begin
+							//---Resume reading---
+							if(data_in_addr[8] == data_out_addr) begin
 								s_axis_tready <= 1'b1;
-								data_in_addr <= 11'b0;
-								buffer_filled <= 0;
-
 								scratch_pad_step <= 3'd1;
 							end
 						end else begin
@@ -237,54 +219,45 @@ module NDP_core (
 
 	//--- NDP Unit Control -------------------
 
-	reg [1:0] NDP_step;
+	reg NDP_step;
 	reg trigger;
 	reg trigger_target;
 
 	always @(posedge clock_pl or posedge NDP_reset) begin
 		if(NDP_reset) begin
-			NDP_step <= 2'b0;
-			NDP_unit_reset <= 1'b1;
-			trigger_target <= 1'b0;
-			trigger <= 1'b0;
+			NDP_unit_reset 	<= 1'b1;
+			data_out_addr 	<= 1'b0;
+			NDP_lock		<= 1'b1;
+			NDP_in_done		<= 1'b0;
+
+			trigger_target 	<= 1'b0;
+			trigger 		<= 1'b1;
+
+			NDP_step 		<= 1'd0;
 		end else begin
 			trigger <= ~trigger;
 			case (NDP_step)
-				2'd0: begin
-					data_out_addr 	<= 3'b0;
-					NDP_lock		<= 1'b1;
-					psum_calc_done 	<= 1'b0;
-					NDP_in_done		<= 1'b0;
-
-					NDP_step <= 2'd1;
-				end
-				2'd1: begin		// MAC
+				1'b0: begin
 					NDP_unit_reset <= 1'b0;
 
-					if(scratch_pad_step == 3'd2 && trigger == trigger_target) begin
-						buffer_filled_in <= buffer_filled;
-						NDP_step <= 2'd2;
-					end
-				end
-				2'd2: begin
-					if(|buffer_filled_in) begin
+					if(data_in_addr[8] != data_out_addr && trigger_target == trigger) begin
+						//-- Buffer is fed with data, data is available
 						NDP_lock <= 1'd0;
-						data_out_addr <= data_out_addr + 1'b1;
-						buffer_filled_in <= buffer_filled_in - 1'b1;
-					end else begin
-						NDP_lock <= 1'd1;
+						data_out_addr <= ~data_out_addr;
 						trigger_target <= ~trigger;
 
 						if(tlast_in) begin
 							// If All data is fed -> Add two sums
-							NDP_in_done 	<= 1'b1;
-							buffer_filled_in <= 0;
-						end else begin
-							// More data is waiting -> Read those data
-							psum_calc_done <= 1'b1;
-							NDP_step <= 2'd0;
+							NDP_step 	<= 1'b1;
 						end
+					end else begin
+						//--- Buffer is not available -> Wait with NDP locked
+						NDP_lock <= 1'd1;
 					end
+				end
+				1'b1: begin
+					NDP_lock		<= 1'd1;
+					NDP_in_done 	<= 1'b1;
 				end
 			endcase
 		end
