@@ -21,9 +21,6 @@
 
 
 module top(
-	input [0:0] 	SYSCLK_P,
-	input [0:0]		SYSCLK_N,
-
 	inout [14:0]	DDR_addr,
 	inout [2:0]		DDR_ba,
 	inout 			DDR_cas_n,
@@ -64,12 +61,9 @@ module top(
 	parameter SYS_WIDTH = 16;
 	parameter SYS_HEIGHT = 1;
 
-	parameter BUFFER_SIZE = 5;
-
 
 //--- WIRES ---------------------------
   	//--- CLOCK & RESET -----------
-	wire [0:0]	IBUF_OUT;
 	wire 		FCLK_CLK0;
 	wire [0:0]	peripheral_aresetn;
 
@@ -86,57 +80,27 @@ module top(
 	wire		S_AXIS_tlast;
 	wire 		S_AXIS_tready;
 	wire 		S_AXIS_tvalid;
-	
-	//--- DEBUG SIGNALS -----------
-	wire [SYS_HEIGHT*ARR_HEIGHT*WIDTH - 1:0] 		NDP_in_a_debug;
-	wire [SYS_WIDTH*ARR_WIDTH*WIDTH - 1:0] 			NDP_in_b_debug;
-
-	wire [SYS_HEIGHT*ARR_HEIGHT*WIDTH - 1:0] 		into_sys_a_debug;
-	wire [SYS_WIDTH*ARR_WIDTH*WIDTH - 1:0] 			into_sys_b_debug;
-
-	wire [1:0] 										NDP_step_debug;
-	wire 											NDP_lock_debug;
-	wire [5:0]										buffer_filled_in_debug;
-	wire [3:0] 										data_out_addr_debug;
-	wire [15:0]										NDP_out_debug;
-	wire [15:0]										add_in_debug;
 
 
 	NDP_core NDP_core0 (
 		//--- Clock & Reset ---
-		.axi_aclk(FCLK_CLK0),
-		.axi_aresetn(peripheral_aresetn),
-		.ps_clk(FCLK_CLK0),
+		.axi_aclk		(FCLK_CLK0),
+		.axi_aresetn	(peripheral_aresetn),
 
 		//--- Data In (AXI4-Stream)---
-		.s_axis_tdata(M_AXIS_tdata),
-		.s_axis_tlast(M_AXIS_tlast),
-		.s_axis_tvalid(M_AXIS_tvalid),
-		.s_axis_tready(M_AXIS_tready),
+		.s_axis_tdata	(M_AXIS_tdata),
+		.s_axis_tlast	(M_AXIS_tlast),
+		.s_axis_tvalid	(M_AXIS_tvalid),
+		.s_axis_tready	(M_AXIS_tready),
 
 		//--- Data Out (AXI4-Stream) ---
-		.m_axis_tdata(S_AXIS_tdata),
-		.m_axis_tlast(S_AXIS_tlast),
-		.m_axis_tvalid(S_AXIS_tvalid),
-		.m_axis_tready(S_AXIS_tready),
-
-		//--- DEBUG ---
-		.NDP_in_a_debug(NDP_in_a_debug),
-		.NDP_in_b_debug(NDP_in_b_debug),
-		.into_sys_a_debug(into_sys_a_debug),
-		.into_sys_b_debug(into_sys_b_debug),
-
-		.NDP_step_debug(NDP_step_debug),
-		.NDP_lock_debug(NDP_lock_debug),
-		.buffer_filled_in_debug(buffer_filled_in_debug),
-		.data_out_addr_debug(data_out_addr_debug),
-		.NDP_out_debug(NDP_out_debug),
-		.add_in_debug(add_in_debug)
+		.m_axis_tdata	(S_AXIS_tdata),
+		.m_axis_tlast	(S_AXIS_tlast),
+		.m_axis_tvalid	(S_AXIS_tvalid),
+		.m_axis_tready	(S_AXIS_tready)
 	);
 
 	system_wrapper system_wrapper0 (
-		.SYSCLK_P				(SYSCLK_P),
-		.SYSCLK_N				(SYSCLK_N),
 		.DDR_addr				(DDR_addr),
 		.DDR_ba					(DDR_ba),
 		.DDR_cas_n				(DDR_cas_n),
@@ -170,22 +134,7 @@ module top(
 		.S_AXIS_tvalid			(S_AXIS_tvalid),
 
 		.FCLK_CLK0				(FCLK_CLK0),
-  		.IBUF_OUT				(IBUF_OUT),
-		.peripheral_aresetn		(peripheral_aresetn),
-
-		//--- DEBUG ---
-		
-		.NDP_in_a_debug(NDP_in_a_debug),
-		.NDP_in_b_debug(NDP_in_b_debug),
-		.into_sys_a_debug(into_sys_a_debug),
-		.into_sys_b_debug(into_sys_b_debug),
-		
-		.NDP_step_debug(NDP_step_debug),
-		.NDP_lock_debug(NDP_lock_debug),
-		.buffer_filled_in_debug(buffer_filled_in_debug),
-		.data_out_addr_debug(data_out_addr_debug),
-		.NDP_out_debug(NDP_out_debug),
-		.add_in_debug(add_in_debug)
+		.peripheral_aresetn		(peripheral_aresetn)
 	);
 	
 	

@@ -33,19 +33,19 @@ genvar i;
 generate
 	for(i=0; i<SYS_HEIGHT+SYS_WIDTH; i=i+1) begin
 		bram bram_x (
-			.clka(write_clk),
-			.ena(1'b1),
-			.wea(data_in_addr[7:1] == i && wen),
-			.addra({data_in_addr[8], data_in_addr[0]}),
-			.dina(data_in),
-			.douta(),
+			.clka	(write_clk),
+			.ena	(1'b1),
+			.wea	(data_in_addr[7:1] == i && wen),
+			.addra	({data_in_addr[8], data_in_addr[0]}),
+			.dina	(data_in),
+			.douta	(),
 
-			.clkb(read_clk),
-			.enb(1'b1),
-			.web(1'b0),
-			.addrb(data_out_addr),
-			.dinb(64'b0),
-			.doutb(data_out[i*64 + 63 : i*64])
+			.clkb	(read_clk),
+			.enb	(1'b1),
+			.web	(1'b0),
+			.addrb	(data_out_addr),
+			.dinb	(64'b0),
+			.doutb	(data_out[i*64 + 63 : i*64])
 		);
 	end
 endgenerate

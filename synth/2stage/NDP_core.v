@@ -3,9 +3,6 @@ module NDP_core (
 	input			axi_aclk,
 	input			axi_aresetn,
 
-	output 			clock_pl,
-    output			clock_axi,
-
 	//--- Data In (AXI4-Stream)---
 	input 		[31:0] 	s_axis_tdata,
 	input 				s_axis_tlast,
@@ -21,12 +18,11 @@ module NDP_core (
 
 //--- PARAMETERS -----------------
 	//--- Clock Ratio ----
-	parameter CLOCK_RATIO = 63;
+	parameter CLOCK_RATIO = 25;
 
 	//---DATA WIDTH---
 	parameter WIDTH=16;
 
-	parameter IS_FLOAT = 1;
 	parameter EXP_BITS = 5;
 	parameter FRAC_BITS = 10;
 
@@ -40,6 +36,7 @@ module NDP_core (
 
 
 //--- Nets and Registers -----------
+	wire					clock_pl;
 
 	// Scratch Pad
 	reg [8:0] 				data_in_addr;
@@ -52,7 +49,7 @@ module NDP_core (
 
 	// NDP_unit control > Scratch Pad control
 	wire 					NDP_calc_done;
-	reg 	 				data_out_addr;
+	reg		 				data_out_addr;
 
 	// Scratch Pad control -> NDP_unit control
 	reg						tlast_in;
@@ -60,11 +57,12 @@ module NDP_core (
 
 	wire [SYS_HEIGHT*ARR_HEIGHT*SYS_WIDTH*ARR_WIDTH*WIDTH - 1 : 0] 	NDP_out;
 
-	wire [SYS_HEIGHT*ARR_HEIGHT*WIDTH - 1:0] 			NDP_in_a;
-	wire [SYS_WIDTH*ARR_WIDTH*WIDTH - 1:0] 				NDP_in_b;
+	wire [SYS_HEIGHT*ARR_HEIGHT*WIDTH - 1:0] 		NDP_in_a;
+	wire [SYS_WIDTH*ARR_WIDTH*WIDTH - 1:0] 			NDP_in_b;
 
 	
 	assign m_axis_tdata = NDP_out >> 32*m_axis_taddr;
+
 
 //--- Clock Generation ------------------------------------
 	clk_gen #(
@@ -73,26 +71,26 @@ module NDP_core (
 		.reset_in			(axi_aresetn),
 		.original_clock		(axi_aclk),
 		
-		.clock_1x			(clock_axi),
+		.clock_2x			(),
 		.clock_slower		(clock_pl)
 	);
 
 //--- Scratch Pad ------------------------------------------
 	scratch_pad #(
 		//---DATA WIDTH---
-		.WIDTH(WIDTH),
+		.WIDTH			(WIDTH),
 
 		//---Number of PEs in each systolic array---
-		.SYS_WIDTH(SYS_WIDTH),
-		.SYS_HEIGHT(SYS_HEIGHT),
+		.SYS_WIDTH		(SYS_WIDTH),
+		.SYS_HEIGHT		(SYS_HEIGHT),
 
 		//---Number of Systolic Arrays---
-		.ARR_WIDTH(ARR_WIDTH),
-		.ARR_HEIGHT(ARR_HEIGHT)
+		.ARR_WIDTH		(ARR_WIDTH),
+		.ARR_HEIGHT		(ARR_HEIGHT)
 	)scratch_pad0 (
 		//--- Clocks ------------------------------
-		.write_clk	(clock_axi),
-		.read_clk	(clock_pl),
+		.write_clk		(axi_aclk),
+		.read_clk		(clock_pl),
 
 		//--- Data In -----------------------------
 		.wen			(s_axis_tready & s_axis_tvalid),
@@ -109,19 +107,18 @@ module NDP_core (
 //--- NDP Unit ---------------------------------------------
 	NDP_unit #(
 		//---DATA WIDTH---
-		.WIDTH(WIDTH),
+		.WIDTH		(WIDTH),
 		
-		.IS_FLOAT(IS_FLOAT),
-		.EXP_BITS(EXP_BITS),
-		.FRAC_BITS(FRAC_BITS),
+		.EXP_BITS	(EXP_BITS),
+		.FRAC_BITS	(FRAC_BITS),
 
 		//---Number of PEs in each systolic array---
-		.SYS_WIDTH(SYS_WIDTH),
-		.SYS_HEIGHT(SYS_HEIGHT),
+		.SYS_WIDTH	(SYS_WIDTH),
+		.SYS_HEIGHT	(SYS_HEIGHT),
 
 		//---Number of Systolic Arrays---
-		.ARR_WIDTH(ARR_WIDTH),
-		.ARR_HEIGHT(ARR_HEIGHT)
+		.ARR_WIDTH	(ARR_WIDTH),
+		.ARR_HEIGHT	(ARR_HEIGHT)
 	) ndp_unit_0 (
 		//--- Clock & Reset ---
 		.clk			(clock_pl),
@@ -129,7 +126,7 @@ module NDP_core (
 
 		//--- Data In ---------
 		.in_a			(NDP_in_a & {SYS_HEIGHT*ARR_HEIGHT*WIDTH{{~NDP_lock}}}),
-		.in_b			(NDP_in_b & {SYS_WIDTH*ARR_HEIGHT*WIDTH{{~NDP_lock}}}),
+		.in_b			(NDP_in_b & {SYS_WIDTH*ARR_WIDTH*WIDTH{{~NDP_lock}}}),
 		.in_done_flag	(NDP_in_done),
 
 		//-- Data Out ---------
@@ -142,7 +139,7 @@ module NDP_core (
 //--- Control ----------------------------------------------
 	//--- Scratch Pad ADDRESS CONTROL ----------
 	reg [2:0] scratch_pad_step;
-	always @(posedge clock_axi or negedge axi_aresetn) begin
+	always @(posedge axi_aclk or negedge axi_aresetn) begin
 		if(~axi_aresetn) begin
 			scratch_pad_step <= 3'b0;
 		end else begin
@@ -150,7 +147,7 @@ module NDP_core (
 				3'd0: begin 	// Reset Step
 					// READ
 					s_axis_tready <= 1'b1;
-					data_in_addr <= 11'b0;
+					data_in_addr <= 9'b0;
 
 					NDP_reset <= 1'b1;
 
@@ -182,18 +179,18 @@ module NDP_core (
 					end
 				end
 				3'd2: begin
-						if(~tlast_in) begin
-							//---Resume reading---
-							if(data_in_addr[8] == data_out_addr) begin
-								s_axis_tready <= 1'b1;
-								scratch_pad_step <= 3'd1;
-							end
-						end else begin
-							//---Wait for Final Calculation
-							if(NDP_calc_done) begin
-								scratch_pad_step <= 3'd3;
-							end
+					if(~tlast_in) begin
+						//---Resume reading---
+						if(data_in_addr[8] == data_out_addr) begin
+							s_axis_tready <= 1'b1;
+							scratch_pad_step <= 3'd1;
 						end
+					end else begin
+						//---Wait for Final Calculation
+						if(NDP_calc_done) begin
+							scratch_pad_step <= 3'd3;
+						end
+					end
 				end
 				3'd3: begin		// Send data through AXI Stream (as master)
 					if(m_axis_tready) begin
@@ -262,5 +259,4 @@ module NDP_core (
 			endcase
 		end
 	end
-
 endmodule

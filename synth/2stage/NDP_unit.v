@@ -2,7 +2,6 @@ module NDP_unit #(
 	//---DATA WIDTH---
 	parameter WIDTH=16,
 
-	parameter IS_FLOAT = 1,
 	parameter EXP_BITS = 5,
 	parameter FRAC_BITS = 10,
 
@@ -38,31 +37,32 @@ genvar j;
 genvar k;
 genvar l;
 
-wire [SYS_HEIGHT * ARR_HEIGHT * WIDTH - 1 : 0] into_sys_a; 	// Buffer -> Systolic Array
-wire [SYS_WIDTH * ARR_WIDTH * WIDTH - 1 : 0] into_sys_b;	// Buffer -> Systolic Array
+wire [SYS_HEIGHT * ARR_HEIGHT * WIDTH - 1 : 0] 	into_sys_a; 	// Buffer -> Systolic Array
+wire [SYS_WIDTH * ARR_WIDTH * WIDTH - 1 : 0] 	into_sys_b;		// Buffer -> Systolic Array
+
 
 //---Done Counter: When matix multiplication is done, prints 1---
 wire into_SYS_done;
 fifo_buffer #(
-	.SIZE(ARR_WIDTH + ARR_HEIGHT), 
-	.WIDTH(1)
+	.SIZE	(ARR_WIDTH + ARR_HEIGHT), 
+	.WIDTH	(1)
 ) DONE_COUNTER (
-	.clk(clk), 
-	.reset(reset),
-	.in(in_done_flag), 
-	.out(into_SYS_done)
+	.clk	(clk), 
+	.reset	(reset),
+	.in		(in_done_flag), 
+	.out	(into_SYS_done)
 );
 
 //---	After all data is fed into systolic array, 
 //	 	wait 4 more cycles for final addition (2 sums are added in PEs)
 fifo_buffer #(
-	.SIZE(4), 
-	.WIDTH(1)
+	.SIZE	(4), 
+	.WIDTH	(1)
 ) DONE_COUNTER_2 (
-	.clk(clk), 
-	.reset(reset),
-	.in(into_SYS_done), 
-	.out(calc_done_flag)
+	.clk	(clk), 
+	.reset	(reset),
+	.in		(into_SYS_done), 
+	.out	(calc_done_flag)
 );
 
 
@@ -72,8 +72,8 @@ generate
 	for(i=0; i<SYS_HEIGHT; i=i+1) begin
 		for(k=0; k<ARR_HEIGHT; k=k+1) begin
 			fifo_buffer #(
-				.SIZE(k+1), 
-				.WIDTH(WIDTH)
+				.SIZE	(k+1), 
+				.WIDTH	(WIDTH)
 			) ACT_BUFF (
 				.clk	(clk), 
 				.reset	(reset),
@@ -86,8 +86,8 @@ generate
 	for(j=0; j<SYS_WIDTH; j=j+1) begin
 		for(l=0; l<ARR_WIDTH; l=l+1) begin
 			fifo_buffer #(
-				.SIZE(l+1), 
-				.WIDTH(WIDTH)
+				.SIZE	(l+1), 
+				.WIDTH	(WIDTH)
 			) ACT_BUFF (
 				.clk	(clk), 
 				.reset	(reset),
@@ -105,7 +105,6 @@ generate
 			//---Systolic Array---
 			systolic_array #(
 					.WIDTH			(WIDTH),
-					.IS_FLOAT		(IS_FLOAT), 
 					.EXP_BITS		(EXP_BITS), 
 					.FRAC_BITS		(FRAC_BITS),
 					.ARR_HEIGHT		(ARR_HEIGHT), 
