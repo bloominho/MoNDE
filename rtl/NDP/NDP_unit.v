@@ -41,8 +41,30 @@ genvar l;
 wire [SYS_HEIGHT * ARR_HEIGHT * WIDTH - 1 : 0] into_sys_a; 	// Buffer -> Systolic Array
 wire [SYS_WIDTH * ARR_WIDTH * WIDTH - 1 : 0] into_sys_b;	// Buffer -> Systolic Array
 
-wire [SYS_HEIGHT - 1 :0] calc_done_flags_col;
-assign calc_done_flag = &calc_done_flags_col;
+//---Done Counter: When matix multiplication is done, prints 1---
+wire into_SYS_done;
+fifo_buffer #(
+	.SIZE(ARR_WIDTH + ARR_HEIGHT), 
+	.WIDTH(1)
+) DONE_COUNTER (
+	.clk(clk), 
+	.reset(reset),
+	.in(in_done_flag), 
+	.out(into_SYS_done)
+);
+
+//---	After all data is fed into systolic array, 
+//	 	wait 4 more cycles for final addition (2 sums are added in PEs)
+fifo_buffer #(
+	.SIZE(4), 
+	.WIDTH(1)
+) DONE_COUNTER_2 (
+	.clk(clk), 
+	.reset(reset),
+	.in(into_SYS_done), 
+	.out(calc_done_flag)
+);
+
 
 //---Buffers---
 generate
@@ -77,14 +99,11 @@ generate
 
 	//---SYSTOLIC ARRAY---
 	for(i=0; i<SYS_HEIGHT; i=i+1) begin
-		wire [SYS_WIDTH - 1 : 0] calc_done_flags_row;
-		assign calc_done_flags_col[i] = &calc_done_flags_row;
-
 		for(j=0; j<SYS_WIDTH; j=j+1) begin
 			wire [ARR_WIDTH * ARR_HEIGHT * WIDTH - 1 : 0] out_temp;		// Connection wire (array's output -> module output)
 
 			//---Systolic Array---
-			systolic_array_with_buffer #(
+			systolic_array #(
 					.WIDTH			(WIDTH),
 					.IS_FLOAT		(IS_FLOAT), 
 					.EXP_BITS		(EXP_BITS), 
@@ -94,10 +113,9 @@ generate
 				) SYS_ARRAY (
 					.clk			(clk), 
 					.reset			(reset), 
-					.in_done_flag	(in_done_flag),
+					.in_done_flag	(into_SYS_done),
 					.in_a			(into_sys_a[ARR_HEIGHT*WIDTH*i + ARR_HEIGHT*WIDTH - 1: ARR_HEIGHT*WIDTH*i]),
 					.in_b			(into_sys_b[ARR_WIDTH*WIDTH*j + ARR_WIDTH*WIDTH - 1 : ARR_WIDTH*WIDTH*j]),
-					.calc_done_flag	(calc_done_flags_row[j]),
 					.out_c			(out_temp)
 			);
 
