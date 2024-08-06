@@ -329,12 +329,8 @@ module NDP_core (
 	ReLU_layer #(
 		//---DATA WIDTH---
 		.WIDTH(WIDTH),
-		//---Number of PEs in each systolic array---
-		.ARR_WIDTH(ARR_WIDTH),
-		.ARR_HEIGHT(ARR_HEIGHT),
-		//---Number of Systolic Arrays---
-		.SYS_WIDTH(SYS_WIDTH),
-		.SYS_HEIGHT(SYS_HEIGHT)
+		//---Number of floats---
+		.COUNT(ARR_HEIGHT*ARR_WIDTH*SYS_WIDTH*SYS_HEIGHT)
 	) relu_layer0 (
 		.apply_relu	(is_relu),
 		.in			(NDP_out),
