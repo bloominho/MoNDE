@@ -27,7 +27,11 @@ wire [WIDTH - 1 : 0] 	add_result;
 
 reg [1:0] step;
 
+reg reset_old;
+
 always @(posedge clk) begin
+	reset_old <= reset;
+
 	if(reset) begin
 		out_a 	<= 0;
 		out_b 	<= 0;
@@ -42,8 +46,15 @@ always @(posedge clk) begin
 				if(in_done_flag) begin
 					step 	<= 2'd1;
 				end
-				out_c 	<= add_result;
-				add_in 	<= mult_result;
+
+				if(reset_old) begin
+					//--- Reset continues ---
+					add_in 	<= 0;
+					out_c 	<= 0;
+				end else begin
+					add_in 	<= mult_result;
+					out_c 	<= add_result;
+				end
 			end
 			2'd1: begin		// ADD TWO SUMS
 				out_c 	<= add_result;

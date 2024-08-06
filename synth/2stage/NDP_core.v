@@ -209,6 +209,7 @@ module NDP_core (
 					end
 				end
 				3'd1: begin 	// Read
+					NDP_reset <= 1'b0;
 					if(s_axis_tready & s_axis_tvalid) begin
 						//---Activate reading (RAM -> Scratch Pad)
 						if(data_in_addr[7:1] == SYS_WIDTH && data_in_addr[0]) begin
@@ -219,7 +220,6 @@ module NDP_core (
 							scratch_pad_step 	<= 3'd2;
 							s_axis_tready 		<= 1'b0;
 							
-							NDP_reset <= 1'b0;
 						end else begin
 							//---Next Address
 							data_in_addr[7:0] 	<= data_in_addr[7:0] + 1'b1;

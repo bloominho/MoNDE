@@ -2,7 +2,7 @@
 module ReLU_layer #(
 	//---DATA WIDTH---
 	parameter WIDTH=16,
-	//---Number of PEs in each systolic array---
+	//---Number of Floats to handle---
 	parameter COUNT = 4
 ) (
     input apply_relu,
