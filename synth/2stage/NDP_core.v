@@ -17,22 +17,7 @@ module NDP_core (
 	output  	[31:0]	m_axis_tdata,
 	output reg 			m_axis_tlast,
 	output reg			m_axis_tvalid,
-	input				m_axis_tready,
-
-	output [SYS_HEIGHT*ARR_HEIGHT*WIDTH - 1:0] 		NDP_in_a_debug,
-	output [SYS_WIDTH*ARR_WIDTH*WIDTH - 1:0] 			NDP_in_b_debug,
-	output [15:0]			probe2_0,
-	output [15:0]			probe3_0,
-	output [15:0]			probe4_0,
-	output 					probe5_0,
-	output 					probe6_0,
-	output 					probe7_0,
-	output 					probe8_0,
-	output [15:0]			probe9_0,
-	output 					probe10_0,
-	output 					probe11_0,
-	output 					probe12_0,
-	output 					probe13_0
+	input				m_axis_tready
 );
 
 
@@ -338,22 +323,5 @@ module NDP_core (
 	);
 
 	assign m_axis_tdata = result_relu >> 32*m_axis_taddr;
-
-	
-//--- DEBUG---
-assign NDP_in_a_debug = NDP_in_a;
-assign NDP_in_b_debug = NDP_in_b;
-assign probe2_0 =  reg_data_key;
-assign probe3_0 = NDP_step;
-assign probe4_0 = scratch_pad_step;
-assign probe5_0 = is_last_in;
-assign probe6_0 = is_last;
-assign probe7_0 = data_out_addr;
-assign probe8_0 = NDP_lock;
-assign probe9_0 = NDP_out[4095:4080];
-assign probe10_0 = read_trigger;
-assign probe11_0 = read_trigger_in;
-assign probe12_0 = s_axis_tvalid;
-assign probe13_0 = s_axis_tready;
 
 endmodule

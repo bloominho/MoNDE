@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2023.1 (64-bit)
+# SW Build 3865809 on Sun May  7 15:04:56 MDT 2023
+# IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
+# SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
+# Start of session at: Fri Aug  9 11:13:16 2024
+# Process ID: 82596
+# Current directory: /home/kimth/bloominho/vivado/NDP_2stage/NDP_2stage.runs/floating_point_add_synth_1
+# Command line: vivado -log floating_point_add.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source floating_point_add.tcl
+# Log file: /home/kimth/bloominho/vivado/NDP_2stage/NDP_2stage.runs/floating_point_add_synth_1/floating_point_add.vds
+# Journal file: /home/kimth/bloominho/vivado/NDP_2stage/NDP_2stage.runs/floating_point_add_synth_1/vivado.jou
+# Running On: owl, OS: Linux, CPU Frequency: 3500.000 MHz, CPU Physical cores: 32, Host memory: 134787 MB
+#-----------------------------------------------------------
+source floating_point_add.tcl -notrace

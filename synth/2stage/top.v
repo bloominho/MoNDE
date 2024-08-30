@@ -45,23 +45,6 @@ module top(
 	inout 			FIXED_IO_ps_srstb
 );
 
-//--- PARAMETERS -----------------
-	//---DATA WIDTH---
-	parameter WIDTH=16;
-
-	parameter IS_FLOAT = 1;
-	parameter EXP_BITS = 5;
-	parameter FRAC_BITS = 10;
-
-	//---Number of PEs in each systolic array---
-	parameter ARR_WIDTH = 4;
-	parameter ARR_HEIGHT = 4;
-
-	//---Number of Systolic Arrays---
-	parameter SYS_WIDTH = 16;
-	parameter SYS_HEIGHT = 1;
-
-
 //--- WIRES ---------------------------
   	//--- CLOCK & RESET -----------
 	wire 		FCLK_CLK0;
@@ -98,23 +81,6 @@ module top(
 	wire 		is_last;
 	wire		read_trigger;
 
-	wire [15:0] probe2_0;
-	wire [15:0] probe3_0;
-	wire [15:0] probe4_0;
-	wire 		probe5_0;
-	wire 		probe6_0;
-	wire 		probe7_0;
-	wire 		probe8_0;
-	wire [15:0] probe9_0;
-	wire 		probe10_0;
-	wire 		probe11_0;
-	wire 		probe12_0;
-	wire 		probe13_0;
-
-
-	wire [SYS_HEIGHT*ARR_HEIGHT*WIDTH - 1:0] 		NDP_in_a_debug;
-	wire [SYS_WIDTH*ARR_WIDTH*WIDTH - 1:0] 			NDP_in_b_debug;
-
 	NDP_core NDP_core0 (
 		//--- Clock & Reset ---
 		.axi_aclk		(FCLK_CLK0),
@@ -134,22 +100,7 @@ module top(
 		.m_axis_tdata	(S_AXIS_tdata),
 		.m_axis_tlast	(S_AXIS_tlast),
 		.m_axis_tvalid	(S_AXIS_tvalid),
-		.m_axis_tready	(S_AXIS_tready),
-
-		.NDP_in_a_debug(NDP_in_a_debug),
-		.NDP_in_b_debug(NDP_in_b_debug),
-		.probe2_0(probe2_0),
-		.probe3_0(probe3_0),
-		.probe4_0(probe4_0),
-		.probe5_0(probe5_0),
-		.probe6_0(probe6_0),
-		.probe7_0(probe7_0),
-		.probe8_0(probe8_0),
-		.probe9_0(probe9_0),
-		.probe10_0(probe10_0),
-		.probe11_0(probe11_0),
-		.probe12_0(probe12_0),
-		.probe13_0(probe13_0)
+		.m_axis_tready	(S_AXIS_tready)
 	);
 
 	//--- Signals (ReLU) ----
@@ -216,22 +167,7 @@ module top(
 		.M_AHB_hwrite			(M_AHB_hwrite),
 
 		.FCLK_CLK0				(FCLK_CLK0),
-		.peripheral_aresetn		(peripheral_aresetn),
-
-		.NDP_in_a_debug(NDP_in_a_debug),
-		.NDP_in_b_debug(NDP_in_b_debug),
-		.probe2_0(probe2_0),
-		.probe3_0(probe3_0),
-		.probe4_0(probe4_0),
-		.probe5_0(probe5_0),
-		.probe6_0(probe6_0),
-		.probe7_0(probe7_0),
-		.probe8_0(probe8_0),
-		.probe9_0(probe9_0),
-		.probe10_0(probe10_0),
-		.probe11_0(probe11_0),
-		.probe12_0(probe12_0),
-		.probe13_0(probe13_0)
+		.peripheral_aresetn		(peripheral_aresetn)
 	);
 	
 	

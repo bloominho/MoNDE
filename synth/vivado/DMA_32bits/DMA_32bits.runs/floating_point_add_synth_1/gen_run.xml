@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="floating_point_add_synth_1" LaunchPart="xc7z045ffg900-2" LaunchTime="1722248074">
+  <File Type="RDS-DCP" Name="floating_point_add.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="floating_point_add_utilization_synth.pb"/>
+  <File Type="PA-TCL" Name="floating_point_add.tcl"/>
+  <File Type="RDS-UTIL" Name="floating_point_add_utilization_synth.rpt"/>
+  <File Type="REPORTS-TCL" Name="floating_point_add_reports.tcl"/>
+  <File Type="RDS-RDS" Name="floating_point_add.vds"/>
+  <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/floating_point_add" RelGenDir="$PGENDIR/floating_point_add">
+    <File Path="$PSRCDIR/sources_1/ip/floating_point_add/floating_point_add.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopModule" Val="floating_point_add"/>
+      <Option Name="UseBlackboxStub" Val="1"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="BlockSrcs" RelSrcDir="$PSRCDIR/floating_point_add" RelGenDir="$PGENDIR/floating_point_add">
+    <File Path="$PSRCDIR/sources_1/ip/floating_point_add/floating_point_add.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopModule" Val="floating_point_add"/>
+      <Option Name="UseBlackboxStub" Val="1"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
+    <Filter Type="Utils"/>
+    <File Path="$PSRCDIR/utils_1/imports/synth_1/system_wrapper.dcp">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedInSteps" Val="synth_1"/>
+        <Attr Name="AutoDcp" Val="1"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023"/>
+    <Step Id="synth_design"/>
+  </Strategy>
+</GenRun>

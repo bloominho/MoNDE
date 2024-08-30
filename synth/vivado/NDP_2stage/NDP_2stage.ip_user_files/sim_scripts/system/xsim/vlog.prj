@@ -1,0 +1,23 @@
+verilog xil_defaultlib --include "/home/kimth/tools/Xilinx/Vivado/2023.1/data/xilinx_vip/include" --include "../../../../NDP_2stage.gen/sources_1/bd/system/ipshared/ec67/hdl" --include "../../../../NDP_2stage.gen/sources_1/bd/system/ipshared/aed8/hdl" --include "../../../../NDP_2stage.gen/sources_1/bd/system/ipshared/1b7e/hdl/verilog" --include "../../../../NDP_2stage.gen/sources_1/bd/system/ipshared/122e/hdl/verilog" --include "../../../../NDP_2stage.gen/sources_1/bd/system/ipshared/affe/hdl/verilog" --include "../../../../NDP_2stage.gen/sources_1/bd/system/ipshared/20d0/hdl/verilog" --include "../../../../NDP_2stage.gen/sources_1/bd/system/ipshared/8713/hdl" \
+"../../../bd/system/ip/system_processing_system7_0_0/sim/system_processing_system7_0_0.v" \
+"../../../bd/system/ip/system_xbar_0/sim/system_xbar_0.v" \
+"../../../bd/system/ip/system_system_ila_0_0/bd_0/sim/bd_d5b8.v" \
+"../../../bd/system/ip/system_system_ila_0_0/bd_0/ip/ip_0/sim/bd_d5b8_ila_lib_0.v" \
+"../../../bd/system/ip/system_system_ila_0_0/bd_0/ip/ip_1/bd_d5b8_g_inst_0_gigantic_mux.v" \
+"../../../bd/system/ip/system_system_ila_0_0/bd_0/ip/ip_1/sim/bd_d5b8_g_inst_0.v" \
+"../../../bd/system/ip/system_system_ila_0_0/sim/system_system_ila_0_0.v" \
+"../../../bd/system/ip/system_axis_data_fifo_0_0/sim/system_axis_data_fifo_0_0.v" \
+"../../../bd/system/ip/system_system_ila_0_1/bd_0/sim/bd_1579.v" \
+"../../../bd/system/ip/system_system_ila_0_1/bd_0/ip/ip_0/sim/bd_1579_ila_lib_0.v" \
+"../../../bd/system/ip/system_system_ila_0_1/sim/system_system_ila_0_1.v" \
+"../../../bd/system/ip/system_auto_pc_0/sim/system_auto_pc_0.v" \
+"../../../bd/system/ip/system_auto_us_0/sim/system_auto_us_0.v" \
+"../../../bd/system/ip/system_auto_us_1/sim/system_auto_us_1.v" \
+"../../../bd/system/ip/system_auto_us_2/sim/system_auto_us_2.v" \
+"../../../bd/system/ip/system_auto_pc_1/sim/system_auto_pc_1.v" \
+"../../../bd/system/sim/system.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

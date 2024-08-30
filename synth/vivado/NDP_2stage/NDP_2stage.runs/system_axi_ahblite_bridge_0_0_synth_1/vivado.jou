@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2023.1 (64-bit)
+# SW Build 3865809 on Sun May  7 15:04:56 MDT 2023
+# IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
+# SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
+# Start of session at: Fri Aug  2 11:54:21 2024
+# Process ID: 63029
+# Current directory: /home/kimth/bloominho/vivado/NDP_2stage/NDP_2stage.runs/system_axi_ahblite_bridge_0_0_synth_1
+# Command line: vivado -log system_axi_ahblite_bridge_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_axi_ahblite_bridge_0_0.tcl
+# Log file: /home/kimth/bloominho/vivado/NDP_2stage/NDP_2stage.runs/system_axi_ahblite_bridge_0_0_synth_1/system_axi_ahblite_bridge_0_0.vds
+# Journal file: /home/kimth/bloominho/vivado/NDP_2stage/NDP_2stage.runs/system_axi_ahblite_bridge_0_0_synth_1/vivado.jou
+# Running On: owl, OS: Linux, CPU Frequency: 800.000 MHz, CPU Physical cores: 32, Host memory: 134787 MB
+#-----------------------------------------------------------
+source system_axi_ahblite_bridge_0_0.tcl -notrace

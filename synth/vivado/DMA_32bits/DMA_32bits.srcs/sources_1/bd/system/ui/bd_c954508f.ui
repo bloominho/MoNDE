@@ -1,0 +1,64 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.419929",
+   "Default View_TopLeft":"-502,2",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.5.8 2022-09-21 7111 VDI=41 GEI=38 GUI=JA:10.0 TLS
+#  -string -flagsOSRD
+preplace port DDR -pg 1 -lvl 6 -x 1810 -y 390 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -lvl 6 -x 1810 -y 410 -defaultsOSRD
+preplace port M_AXIS -pg 1 -lvl 6 -x 1810 -y 430 -defaultsOSRD
+preplace port S_AXIS -pg 1 -lvl 0 -x 0 -y 180 -defaultsOSRD
+preplace port port-id_FCLK_CLK0 -pg 1 -lvl 6 -x 1810 -y 630 -defaultsOSRD
+preplace portBus peripheral_aresetn -pg 1 -lvl 6 -x 1810 -y 650 -defaultsOSRD
+preplace portBus NDP_in_a_debug -pg 1 -lvl 0 -x 0 -y 890 -defaultsOSRD
+preplace portBus NDP_in_b_debug -pg 1 -lvl 0 -x 0 -y 910 -defaultsOSRD
+preplace portBus NDP_step_debug -pg 1 -lvl 0 -x 0 -y 950 -defaultsOSRD
+preplace portBus NDP_lock_debug -pg 1 -lvl 0 -x 0 -y 970 -defaultsOSRD
+preplace portBus buffer_filled_in_debug -pg 1 -lvl 0 -x 0 -y 990 -defaultsOSRD
+preplace portBus data_out_addr_debug -pg 1 -lvl 0 -x 0 -y 1010 -defaultsOSRD
+preplace portBus into_sys_a_debug -pg 1 -lvl 0 -x 0 -y 1030 -defaultsOSRD
+preplace portBus into_sys_b_debug -pg 1 -lvl 0 -x 0 -y 1050 -defaultsOSRD
+preplace portBus NDP_out_debug -pg 1 -lvl 0 -x 0 -y 930 -defaultsOSRD
+preplace portBus add_in_debug -pg 1 -lvl 0 -x 0 -y 1070 -defaultsOSRD
+preplace inst processing_system7_0 -pg 1 -lvl 4 -x 1320 -y 470 -defaultsOSRD
+preplace inst dma -pg 1 -lvl 2 -x 560 -y 130 -defaultsOSRD
+preplace inst ps7_0_axi_periph -pg 1 -lvl 1 -x 200 -y 770 -defaultsOSRD
+preplace inst rst_ps7_0_50M -pg 1 -lvl 4 -x 1320 -y 770 -defaultsOSRD
+preplace inst axi_mem_intercon -pg 1 -lvl 3 -x 920 -y 460 -defaultsOSRD
+preplace inst system_ila_0 -pg 1 -lvl 5 -x 1690 -y 530 -defaultsOSRD
+preplace inst axis_data_fifo_0 -pg 1 -lvl 1 -x 200 -y 200 -defaultsOSRD
+preplace inst system_ila_1 -pg 1 -lvl 5 -x 1690 -y 970 -defaultsOSRD
+preplace netloc probe0_0_1 1 0 5 NJ 890 NJ 890 NJ 890 NJ 890 NJ
+preplace netloc probe1_0_1 1 0 5 NJ 910 NJ 910 NJ 910 NJ 910 NJ
+preplace netloc probe2_0_1 1 0 5 NJ 930 NJ 930 NJ 930 NJ 930 NJ
+preplace netloc probe3_0_1 1 0 5 NJ 950 NJ 950 NJ 950 NJ 950 NJ
+preplace netloc probe4_0_1 1 0 5 NJ 970 NJ 970 NJ 970 NJ 970 NJ
+preplace netloc probe5_0_1 1 0 5 NJ 990 NJ 990 NJ 990 NJ 990 NJ
+preplace netloc probe6_0_1 1 0 5 NJ 1010 NJ 1010 NJ 1010 NJ 1010 NJ
+preplace netloc probe7_0_1 1 0 5 NJ 1030 NJ 1030 NJ 1030 NJ 1030 NJ
+preplace netloc probe8_0_1 1 0 5 NJ 1050 NJ 1050 NJ 1050 NJ 1050 NJ
+preplace netloc probe9_0_1 1 0 5 NJ 1070 NJ 1070 NJ 1070 NJ 1070 NJ
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 3 2 1090 670 1550
+preplace netloc rst_ps7_0_50M_peripheral_aresetn 1 0 6 30 650 380 420 770 660 NJ 660 1590 650 NJ
+preplace netloc processing_system7_0_FCLK_CLK1 1 0 6 40 290 360 260 740 650 1080 610 1560 630 NJ
+preplace netloc S_AXIS_1 1 0 5 20 280 NJ 280 NJ 280 NJ 280 1580
+preplace netloc axi_mem_intercon_M00_AXI 1 3 1 N 460
+preplace netloc axis_data_fifo_0_M_AXIS 1 1 4 370 270 NJ 270 NJ 270 1570
+preplace netloc dma_M_AXIS_MM2S 1 2 4 NJ 120 NJ 120 1590 430 NJ
+preplace netloc dma_M_AXI_MM2S 1 2 1 770 80n
+preplace netloc dma_M_AXI_S2MM 1 2 1 750 100n
+preplace netloc dma_M_AXI_SG 1 2 1 760 60n
+preplace netloc processing_system7_0_DDR 1 4 2 NJ 390 NJ
+preplace netloc processing_system7_0_FIXED_IO 1 4 2 NJ 410 NJ
+preplace netloc processing_system7_0_M_AXI_GP0 1 0 5 50 640 NJ 640 NJ 640 1070J 330 1550
+preplace netloc ps7_0_axi_periph_M00_AXI 1 1 1 350 70n
+levelinfo -pg 1 0 200 560 920 1320 1690 1810
+pagesize -pg 1 -db -bbox -sgen -250 0 2030 1130
+"
+}
+{
+   "da_axi4_cnt":"4",
+   "da_clkrst_cnt":"4",
+   "da_ps7_cnt":"1"
+}
