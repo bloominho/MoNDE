@@ -1,0 +1,11 @@
+tmp_kernel_*
+packaged_kernel_*
+host
+_x*
+package*
+.Xil
+.run
+.ipcache
+*.csv
+xrt.run_summary
+build_dir.hw_emu.xilinx_u280_gen3x16_xdma_1_202211_1/*

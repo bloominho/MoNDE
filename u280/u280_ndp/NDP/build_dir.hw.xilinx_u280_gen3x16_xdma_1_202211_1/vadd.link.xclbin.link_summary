@@ -1,0 +1,1130 @@
+<ENTRY>
+{
+ "thisFile": "/home/kimth/bloominho/main_repo/main_3/build_dir.hw.xilinx_u280_gen3x16_xdma_1_202211_1/vadd.link.xclbin.link_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Wed Aug 28 17:59:16 2024",
+ "timestampMillis": "1724835556097",
+ "buildStep": {
+  "cmdId": "5d6cb823-0e2d-47df-a0fc-fea1871dde1f",
+  "name": "v++",
+  "logFile": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/link.steps.log",
+  "commandLine": "/home/kimth/tools/Xilinx/Vitis/2023.1/bin/unwrapped/lnx64.o/v++  --vivado.prop \"run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --advanced.misc \"report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --advanced.misc \"report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" -l --save-temps -t hw --platform xilinx_u280_gen3x16_xdma_1_202211_1 --temp_dir ./_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1 --config ./krnl_vaddmul.cfg -o./build_dir.hw.xilinx_u280_gen3x16_xdma_1_202211_1/vadd.link.xclbin _x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/vadd.xo ",
+  "args": [
+   "-l",
+   "--save-temps",
+   "-t",
+   "hw",
+   "--platform",
+   "xilinx_u280_gen3x16_xdma_1_202211_1",
+   "--temp_dir",
+   "./_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1",
+   "--config",
+   "./krnl_vaddmul.cfg",
+   "-o./build_dir.hw.xilinx_u280_gen3x16_xdma_1_202211_1/vadd.link.xclbin",
+   "_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/vadd.xo"
+  ],
+  "iniFiles": [
+   {
+    "path": "/home/kimth/bloominho/main_repo/main_3/krnl_vaddmul.cfg",
+    "content": "[connectivity]\nsp=krnl_vadd_rtl_1.m_axi_gmem_0:PLRAM[0]\nsp=krnl_vadd_rtl_1.m_axi_gmem_1:PLRAM[1]\n\nsp=krnl_vadd_rtl_1.m_axi_gmem_2:HBM[0]\nsp=krnl_vadd_rtl_1.m_axi_gmem_3:HBM[1]\nsp=krnl_vadd_rtl_1.m_axi_gmem_4:HBM[2]\nsp=krnl_vadd_rtl_1.m_axi_gmem_5:HBM[3]\nsp=krnl_vadd_rtl_1.m_axi_gmem_6:HBM[4]\nsp=krnl_vadd_rtl_1.m_axi_gmem_7:HBM[5]\nsp=krnl_vadd_rtl_1.m_axi_gmem_8:HBM[6]\nsp=krnl_vadd_rtl_1.m_axi_gmem_9:HBM[7]\nsp=krnl_vadd_rtl_1.m_axi_gmem_10:HBM[8]\nsp=krnl_vadd_rtl_1.m_axi_gmem_11:HBM[9]\nsp=krnl_vadd_rtl_1.m_axi_gmem_12:HBM[10]\nsp=krnl_vadd_rtl_1.m_axi_gmem_13:HBM[11]\nsp=krnl_vadd_rtl_1.m_axi_gmem_14:HBM[12]\nsp=krnl_vadd_rtl_1.m_axi_gmem_15:HBM[13]\nsp=krnl_vadd_rtl_1.m_axi_gmem_16:HBM[14]\nsp=krnl_vadd_rtl_1.m_axi_gmem_17:HBM[15]\nsp=krnl_vadd_rtl_1.m_axi_gmem_18:HBM[16]\nsp=krnl_vadd_rtl_1.m_axi_gmem_19:HBM[17]\nsp=krnl_vadd_rtl_1.m_axi_gmem_20:HBM[18]\nsp=krnl_vadd_rtl_1.m_axi_gmem_21:HBM[19]\nsp=krnl_vadd_rtl_1.m_axi_gmem_22:HBM[20]\nsp=krnl_vadd_rtl_1.m_axi_gmem_23:HBM[21]\nsp=krnl_vadd_rtl_1.m_axi_gmem_24:HBM[22]\nsp=krnl_vadd_rtl_1.m_axi_gmem_25:HBM[23]\nsp=krnl_vadd_rtl_1.m_axi_gmem_26:HBM[24]\nsp=krnl_vadd_rtl_1.m_axi_gmem_27:HBM[25]\nsp=krnl_vadd_rtl_1.m_axi_gmem_28:HBM[26]\nsp=krnl_vadd_rtl_1.m_axi_gmem_29:HBM[27]\nsp=krnl_vadd_rtl_1.m_axi_gmem_30:HBM[28]\nsp=krnl_vadd_rtl_1.m_axi_gmem_31:HBM[29]\nsp=krnl_vadd_rtl_1.m_axi_gmem_32:HBM[30]\nsp=krnl_vadd_rtl_1.m_axi_gmem_33:HBM[31]\n\nnk=krnl_vadd_rtl:1"
+   }
+  ],
+  "cwd": "/home/kimth/bloominho/main_repo/main_3"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 17:59:16 2024",
+ "timestampMillis": "1724835556098",
+ "status": {
+  "cmdId": "5d6cb823-0e2d-47df-a0fc-fea1871dde1f",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "Wed Aug 28 17:59:20 2024",
+ "timestampMillis": "1724835560918",
+ "buildSummary": {
+  "hardwarePlatform": "xilinx_u280_gen3x16_xdma_1_202211_1.xpfm",
+  "hardwareDsa": "",
+  "platformDirectory": "/opt/xilinx/platforms/xilinx_u280_gen3x16_xdma_1_202211_1",
+  "runtime": "OpenCL",
+  "systemConfig": "Linux",
+  "flow": "BF_LINK",
+  "target": "TT_HW",
+  "binaryContainer": {
+   "base": {
+    "type": "BT_UKNOWN",
+    "name": "vadd.link",
+    "file": "/home/kimth/bloominho/main_repo/main_3/build_dir.hw.xilinx_u280_gen3x16_xdma_1_202211_1/vadd.link.xclbin",
+    "reports": [],
+    "uuid": ""
+   },
+   "kernels": []
+  },
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "krnl_vadd_rtl",
+     "file": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/vadd.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/xo/krnl_vadd_rtl/krnl_vadd_rtl/cpu_sources/vadd_cmodel.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [
+     "krnl_vadd_rtl_1"
+    ],
+    "type": "RTL",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": "Vitis V++ Compiler Release 2023.1. SW Build 3860322 on 2023-05-04-06:32:48"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Wed Aug 28 17:59:21 2024",
+ "timestampMillis": "1724835561055",
+ "buildStep": {
+  "cmdId": "dbf63282-3f72-4a1d-9d68-268ee1024e15",
+  "name": "system_link",
+  "logFile": "",
+  "commandLine": "system_link --xo /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/vadd.xo -keep --config /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/syslinkConfig.ini --xpfm /opt/xilinx/platforms/xilinx_u280_gen3x16_xdma_1_202211_1/xilinx_u280_gen3x16_xdma_1_202211_1.xpfm --target hw --output_dir /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int --temp_dir /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/sys_link",
+  "args": [
+   "--xo",
+   "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/vadd.xo",
+   "-keep",
+   "--config",
+   "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/syslinkConfig.ini",
+   "--xpfm",
+   "/opt/xilinx/platforms/xilinx_u280_gen3x16_xdma_1_202211_1/xilinx_u280_gen3x16_xdma_1_202211_1.xpfm",
+   "--target",
+   "hw",
+   "--output_dir",
+   "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int",
+   "--temp_dir",
+   "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/sys_link"
+  ],
+  "iniFiles": [
+   {
+    "path": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/syslinkConfig.ini",
+    "content": "nk=krnl_vadd_rtl:1\nsp=krnl_vadd_rtl_1.m_axi_gmem_0:PLRAM[0]\nsp=krnl_vadd_rtl_1.m_axi_gmem_1:PLRAM[1]\nsp=krnl_vadd_rtl_1.m_axi_gmem_2:HBM[0]\nsp=krnl_vadd_rtl_1.m_axi_gmem_3:HBM[1]\nsp=krnl_vadd_rtl_1.m_axi_gmem_4:HBM[2]\nsp=krnl_vadd_rtl_1.m_axi_gmem_5:HBM[3]\nsp=krnl_vadd_rtl_1.m_axi_gmem_6:HBM[4]\nsp=krnl_vadd_rtl_1.m_axi_gmem_7:HBM[5]\nsp=krnl_vadd_rtl_1.m_axi_gmem_8:HBM[6]\nsp=krnl_vadd_rtl_1.m_axi_gmem_9:HBM[7]\nsp=krnl_vadd_rtl_1.m_axi_gmem_10:HBM[8]\nsp=krnl_vadd_rtl_1.m_axi_gmem_11:HBM[9]\nsp=krnl_vadd_rtl_1.m_axi_gmem_12:HBM[10]\nsp=krnl_vadd_rtl_1.m_axi_gmem_13:HBM[11]\nsp=krnl_vadd_rtl_1.m_axi_gmem_14:HBM[12]\nsp=krnl_vadd_rtl_1.m_axi_gmem_15:HBM[13]\nsp=krnl_vadd_rtl_1.m_axi_gmem_16:HBM[14]\nsp=krnl_vadd_rtl_1.m_axi_gmem_17:HBM[15]\nsp=krnl_vadd_rtl_1.m_axi_gmem_18:HBM[16]\nsp=krnl_vadd_rtl_1.m_axi_gmem_19:HBM[17]\nsp=krnl_vadd_rtl_1.m_axi_gmem_20:HBM[18]\nsp=krnl_vadd_rtl_1.m_axi_gmem_21:HBM[19]\nsp=krnl_vadd_rtl_1.m_axi_gmem_22:HBM[20]\nsp=krnl_vadd_rtl_1.m_axi_gmem_23:HBM[21]\nsp=krnl_vadd_rtl_1.m_axi_gmem_24:HBM[22]\nsp=krnl_vadd_rtl_1.m_axi_gmem_25:HBM[23]\nsp=krnl_vadd_rtl_1.m_axi_gmem_26:HBM[24]\nsp=krnl_vadd_rtl_1.m_axi_gmem_27:HBM[25]\nsp=krnl_vadd_rtl_1.m_axi_gmem_28:HBM[26]\nsp=krnl_vadd_rtl_1.m_axi_gmem_29:HBM[27]\nsp=krnl_vadd_rtl_1.m_axi_gmem_30:HBM[28]\nsp=krnl_vadd_rtl_1.m_axi_gmem_31:HBM[29]\nsp=krnl_vadd_rtl_1.m_axi_gmem_32:HBM[30]\nsp=krnl_vadd_rtl_1.m_axi_gmem_33:HBM[31]\n\n"
+   }
+  ],
+  "cwd": "/home/kimth/bloominho/main_repo/main_3"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 17:59:21 2024",
+ "timestampMillis": "1724835561056",
+ "status": {
+  "cmdId": "dbf63282-3f72-4a1d-9d68-268ee1024e15",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 17:59:50 2024",
+ "timestampMillis": "1724835590117",
+ "status": {
+  "cmdId": "dbf63282-3f72-4a1d-9d68-268ee1024e15",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Wed Aug 28 17:59:50 2024",
+ "timestampMillis": "1724835590121",
+ "buildStep": {
+  "cmdId": "d107d27d-eeff-4530-9fe9-0c638864ec27",
+  "name": "cf2sw",
+  "logFile": "",
+  "commandLine": "cf2sw -sdsl /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/sdsl.dat -rtd /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/cf2sw.rtd -nofilter /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/cf2sw_full.rtd -xclbin /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/xclbin_orig.xml -o /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/xclbin_orig.1.xml",
+  "args": [
+   "-sdsl",
+   "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/sdsl.dat",
+   "-rtd",
+   "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/cf2sw.rtd",
+   "-nofilter",
+   "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/cf2sw_full.rtd",
+   "-xclbin",
+   "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/xclbin_orig.xml",
+   "-o",
+   "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/xclbin_orig.1.xml"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/kimth/bloominho/main_repo/main_3"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 17:59:50 2024",
+ "timestampMillis": "1724835590122",
+ "status": {
+  "cmdId": "d107d27d-eeff-4530-9fe9-0c638864ec27",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 17:59:59 2024",
+ "timestampMillis": "1724835599600",
+ "status": {
+  "cmdId": "d107d27d-eeff-4530-9fe9-0c638864ec27",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Wed Aug 28 17:59:59 2024",
+ "timestampMillis": "1724835599604",
+ "buildStep": {
+  "cmdId": "568257ac-2b59-473e-a9e0-f468d5014a4e",
+  "name": "rtd2_system_diagram",
+  "logFile": "",
+  "commandLine": "rtd2SystemDiagram",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/kimth/bloominho/main_repo/main_3"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 17:59:59 2024",
+ "timestampMillis": "1724835599605",
+ "status": {
+  "cmdId": "568257ac-2b59-473e-a9e0-f468d5014a4e",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Aug 28 18:00:00 2024",
+ "timestampMillis": "1724835600006",
+ "report": {
+  "path": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/systemDiagramModel.json",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "SYSTEM_DIAGRAM",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 18:00:00 2024",
+ "timestampMillis": "1724835600007",
+ "status": {
+  "cmdId": "568257ac-2b59-473e-a9e0-f468d5014a4e",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Wed Aug 28 18:00:00 2024",
+ "timestampMillis": "1724835600010",
+ "buildStep": {
+  "cmdId": "872eff52-ec29-4e4c-a76e-8e0675c3ac8d",
+  "name": "vpl",
+  "logFile": "",
+  "commandLine": "vpl -t hw -f xilinx_u280_gen3x16_xdma_1_202211_1 -s --remote_ip_cache /home/kimth/bloominho/main_repo/main_3/.ipcache --output_dir /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int --log_dir /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/logs/link --report_dir /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/reports/link --config /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/vplConfig.ini -k /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/kernel_info.dat --webtalk_flag Vitis --temp_dir /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link --no-info --iprepo /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/xo/ip_repo/xilinx_com_RTLKernel_krnl_vadd_rtl_1_0 --messageDb /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/run_link/vpl.pb /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/dr.bd.tcl",
+  "args": [
+   "-t",
+   "hw",
+   "-f",
+   "xilinx_u280_gen3x16_xdma_1_202211_1",
+   "-s",
+   "--remote_ip_cache",
+   "/home/kimth/bloominho/main_repo/main_3/.ipcache",
+   "--output_dir",
+   "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int",
+   "--log_dir",
+   "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/logs/link",
+   "--report_dir",
+   "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/reports/link",
+   "--config",
+   "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/vplConfig.ini",
+   "-k",
+   "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/kernel_info.dat",
+   "--webtalk_flag",
+   "Vitis",
+   "--temp_dir",
+   "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link",
+   "--no-info",
+   "--iprepo",
+   "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/xo/ip_repo/xilinx_com_RTLKernel_krnl_vadd_rtl_1_0",
+   "--messageDb",
+   "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/run_link/vpl.pb",
+   "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/dr.bd.tcl"
+  ],
+  "iniFiles": [
+   {
+    "path": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/vplConfig.ini",
+    "content": "[advanced]\nmisc=report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\nmisc=report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\nparam=compiler.enablePerformanceTrace=1\nparam=compiler.vppCurrentWorkingDir=/home/kimth/bloominho/main_repo/main_3\nmisc=BinaryName=vadd.link\n\n[connectivity]\nnk=krnl_vadd_rtl:1:krnl_vadd_rtl_1\n\n[vivado]\nprop=run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\n\n"
+   }
+  ],
+  "cwd": "/home/kimth/bloominho/main_repo/main_3"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 18:00:00 2024",
+ "timestampMillis": "1724835600011",
+ "status": {
+  "cmdId": "872eff52-ec29-4e4c-a76e-8e0675c3ac8d",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Wed Aug 28 18:00:02 2024",
+ "timestampMillis": "1724835602208",
+ "buildStep": {
+  "cmdId": "a406aec9-7c2e-402b-bb09-eeaaa0f64e75",
+  "name": "vpl",
+  "logFile": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/link.steps.log",
+  "commandLine": "/home/kimth/tools/Xilinx/Vitis/2023.1/bin/unwrapped/lnx64.o/vpl -t hw -f xilinx_u280_gen3x16_xdma_1_202211_1 -s --remote_ip_cache /home/kimth/bloominho/main_repo/main_3/.ipcache --output_dir /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int --log_dir /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/logs/link --report_dir /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/reports/link --config /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/vplConfig.ini -k /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/kernel_info.dat --webtalk_flag Vitis --temp_dir /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link --no-info --iprepo /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/xo/ip_repo/xilinx_com_RTLKernel_krnl_vadd_rtl_1_0 --messageDb /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/run_link/vpl.pb /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/dr.bd.tcl ",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/run_link"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 18:00:02 2024",
+ "timestampMillis": "1724835602208",
+ "status": {
+  "cmdId": "a406aec9-7c2e-402b-bb09-eeaaa0f64e75",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_VivadoProject",
+ "dateTimestamp": "Wed Aug 28 18:00:07 2024",
+ "timestampMillis": "1724835607174",
+ "vivadoProject": {
+  "openDir": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/vivado/vpl",
+  "openScript": "openprj.tcl",
+  "relativeProject": "prj/prj.xpr"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Wed Aug 28 18:00:07 2024",
+ "timestampMillis": "1724835607175",
+ "buildStep": {
+  "cmdId": "dcb7cd8e-0340-424b-9ae3-db64869538ca",
+  "name": "vivado",
+  "logFile": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/vivado/vpl/vivado.log",
+  "commandLine": "vivado -log vivado.log -applog -m64 -messageDb vivado.pb -mode batch -source vpl.tcl -notrace",
+  "args": [
+   "-log",
+   "vivado.log",
+   "-applog",
+   " -m64",
+   "-messageDb",
+   "vivado.pb",
+   "-mode",
+   "batch",
+   "-source",
+   "vpl.tcl",
+   "-notrace"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/run_link"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 18:00:07 2024",
+ "timestampMillis": "1724835607175",
+ "status": {
+  "cmdId": "dcb7cd8e-0340-424b-9ae3-db64869538ca",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Aug 28 18:01:14 2024",
+ "timestampMillis": "1724835674254",
+ "report": {
+  "path": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/automation_summary_update_bd.txt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "VITIS_DESIGN_FLOW",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Wed Aug 28 18:18:20 2024",
+ "timestampMillis": "1724836700847",
+ "buildStep": {
+  "cmdId": "34d58ab7-15bf-43b7-8654-1c138a04105a",
+  "name": "vivado.impl",
+  "logFile": "",
+  "commandLine": "",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/vivado/vpl"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 18:18:20 2024",
+ "timestampMillis": "1724836700848",
+ "status": {
+  "cmdId": "34d58ab7-15bf-43b7-8654-1c138a04105a",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Wed Aug 28 18:18:20 2024",
+ "timestampMillis": "1724836700849",
+ "buildStep": {
+  "cmdId": "4512e0f8-e00d-421c-925b-6fd20a6608bf",
+  "name": "vivado.impl.impl_1",
+  "logFile": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/vivado/vpl/prj/prj.runs/impl_1/runme.log",
+  "commandLine": "",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/vivado/vpl/prj/prj.runs/impl_1"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 18:18:20 2024",
+ "timestampMillis": "1724836700849",
+ "status": {
+  "cmdId": "4512e0f8-e00d-421c-925b-6fd20a6608bf",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Aug 28 21:18:58 2024",
+ "timestampMillis": "1724847538504",
+ "report": {
+  "path": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/kernel_service.json",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "KERNEL_SERVICE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Aug 28 21:18:58 2024",
+ "timestampMillis": "1724847538506",
+ "report": {
+  "path": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/kernel_service.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "KERNEL_SERVICE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Aug 28 21:22:57 2024",
+ "timestampMillis": "1724847777056",
+ "report": {
+  "path": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/vivado/vpl/prj/prj.runs/impl_1/dr_timing_summary.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_TIMING_SUMMARY_FAIL",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 22:08:25 2024",
+ "timestampMillis": "1724850505748",
+ "status": {
+  "cmdId": "dcb7cd8e-0340-424b-9ae3-db64869538ca",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Aug 28 22:08:25 2024",
+ "timestampMillis": "1724850505757",
+ "report": {
+  "path": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/reports/link/imp/impl_1_full_util_placed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_UTILIZATION_PLACEMENT",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Aug 28 22:08:25 2024",
+ "timestampMillis": "1724850505757",
+ "report": {
+  "path": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/reports/link/imp/impl_1_slr_util_placed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_SLR_UTIL_PLACED",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Aug 28 22:08:25 2024",
+ "timestampMillis": "1724850505758",
+ "report": {
+  "path": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/reports/link/imp/impl_1_full_util_placed.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_UTILIZATION_PLACEMENT",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Aug 28 22:08:25 2024",
+ "timestampMillis": "1724850505758",
+ "report": {
+  "path": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/reports/link/imp/impl_1_full_util_routed.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_UTILIZATION_ROUTE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Aug 28 22:08:25 2024",
+ "timestampMillis": "1724850505758",
+ "report": {
+  "path": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/reports/link/imp/impl_1_slr_util_placed.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_SLR_UTIL_PLACED",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Aug 28 22:08:25 2024",
+ "timestampMillis": "1724850505759",
+ "report": {
+  "path": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/reports/link/imp/impl_1_slr_util_routed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_SLR_UTIL_ROUTED",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Aug 28 22:08:25 2024",
+ "timestampMillis": "1724850505759",
+ "report": {
+  "path": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/reports/link/imp/impl_1_slr_util_routed.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_SLR_UTIL_ROUTED",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Aug 28 22:08:25 2024",
+ "timestampMillis": "1724850505760",
+ "report": {
+  "path": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/reports/link/imp/impl_1_full_util_routed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_UTILIZATION_ROUTE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Aug 28 22:08:25 2024",
+ "timestampMillis": "1724850505825",
+ "report": {
+  "path": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/reports/link/syn/ulp_krnl_vadd_rtl_1_0_synth_1_ulp_krnl_vadd_rtl_1_0_utilization_synth.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Aug 28 22:08:25 2024",
+ "timestampMillis": "1724850505839",
+ "report": {
+  "path": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/reports/link/imp/impl_1_hw_bb_locked_timing_summary_routed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_TIMING_SUMMARY",
+  "cmdId": "4512e0f8-e00d-421c-925b-6fd20a6608bf"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Aug 28 22:08:25 2024",
+ "timestampMillis": "1724850505852",
+ "report": {
+  "path": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/reports/link/imp/impl_1_hw_bb_locked_timing_summary_routed.rpx",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_REPORT_TIMING_SUMMARY",
+  "cmdId": "4512e0f8-e00d-421c-925b-6fd20a6608bf"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Aug 28 22:08:25 2024",
+ "timestampMillis": "1724850505852",
+ "report": {
+  "path": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/reports/link/imp/impl_1_hw_bb_locked_timing_summary_routed.rpv",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_REPORT_TIMING_SUMMARY_CONCISE",
+  "cmdId": "4512e0f8-e00d-421c-925b-6fd20a6608bf"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 22:08:25 2024",
+ "timestampMillis": "1724850505869",
+ "status": {
+  "cmdId": "a406aec9-7c2e-402b-bb09-eeaaa0f64e75",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 22:08:25 2024",
+ "timestampMillis": "1724850505887",
+ "status": {
+  "cmdId": "872eff52-ec29-4e4c-a76e-8e0675c3ac8d",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Wed Aug 28 22:08:25 2024",
+ "timestampMillis": "1724850505892",
+ "buildStep": {
+  "cmdId": "b491cee3-9186-4997-9252-baf451e363c0",
+  "name": "rtdgen",
+  "logFile": "",
+  "commandLine": "rtdgen",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/kimth/bloominho/main_repo/main_3"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 22:08:25 2024",
+ "timestampMillis": "1724850505892",
+ "status": {
+  "cmdId": "b491cee3-9186-4997-9252-baf451e363c0",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Aug 28 22:08:25 2024",
+ "timestampMillis": "1724850505898",
+ "report": {
+  "path": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/vadd.link_xml.rtd",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "XCLBIN_INFO",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Wed Aug 28 22:08:25 2024",
+ "timestampMillis": "1724850505900",
+ "buildStep": {
+  "cmdId": "d64b43f5-8abc-448d-bd36-84a290e35998",
+  "name": "cf2sw",
+  "logFile": "",
+  "commandLine": "cf2sw -a /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/address_map.xml -sdsl /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/sdsl.dat -xclbin /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/xclbin_orig.xml -rtd /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/vadd.link.rtd -o /home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/vadd.link.xml",
+  "args": [
+   "-a",
+   "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/address_map.xml",
+   "-sdsl",
+   "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/sdsl.dat",
+   "-xclbin",
+   "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/xclbin_orig.xml",
+   "-rtd",
+   "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/vadd.link.rtd",
+   "-o",
+   "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/vadd.link.xml"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/kimth/bloominho/main_repo/main_3"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 22:08:25 2024",
+ "timestampMillis": "1724850505901",
+ "status": {
+  "cmdId": "d64b43f5-8abc-448d-bd36-84a290e35998",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 22:08:32 2024",
+ "timestampMillis": "1724850512749",
+ "status": {
+  "cmdId": "d64b43f5-8abc-448d-bd36-84a290e35998",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Wed Aug 28 22:08:32 2024",
+ "timestampMillis": "1724850512750",
+ "buildStep": {
+  "cmdId": "421e23e9-b972-4469-851a-e2dea7577288",
+  "name": "rtdgen",
+  "logFile": "",
+  "commandLine": "writeSystemDiagram",
+  "args": [
+   "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/vadd.link.rtd",
+   "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/systemDiagramModelSlrBaseAddress.json"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/kimth/bloominho/main_repo/main_3"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 22:08:32 2024",
+ "timestampMillis": "1724850512750",
+ "status": {
+  "cmdId": "421e23e9-b972-4469-851a-e2dea7577288",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Aug 28 22:08:32 2024",
+ "timestampMillis": "1724850512765",
+ "report": {
+  "path": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/systemDiagramModelSlrBaseAddress.json",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "SYSTEM_DIAGRAM_PLUS",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 22:08:32 2024",
+ "timestampMillis": "1724850512766",
+ "status": {
+  "cmdId": "421e23e9-b972-4469-851a-e2dea7577288",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Wed Aug 28 22:08:32 2024",
+ "timestampMillis": "1724850512767",
+ "buildStep": {
+  "cmdId": "d1170c83-d4fd-405e-9ca1-952a9626d3c7",
+  "name": "rtdgen",
+  "logFile": "",
+  "commandLine": "writeAutomationSummary",
+  "args": [
+   "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/automation_summary.txt"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/kimth/bloominho/main_repo/main_3"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 22:08:32 2024",
+ "timestampMillis": "1724850512767",
+ "status": {
+  "cmdId": "d1170c83-d4fd-405e-9ca1-952a9626d3c7",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Aug 28 22:08:32 2024",
+ "timestampMillis": "1724850512769",
+ "report": {
+  "path": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/automation_summary.txt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "VITIS_DESIGN_FLOW",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 22:08:32 2024",
+ "timestampMillis": "1724850512770",
+ "status": {
+  "cmdId": "d1170c83-d4fd-405e-9ca1-952a9626d3c7",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 22:08:32 2024",
+ "timestampMillis": "1724850512771",
+ "status": {
+  "cmdId": "b491cee3-9186-4997-9252-baf451e363c0",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Wed Aug 28 22:08:32 2024",
+ "timestampMillis": "1724850512774",
+ "buildStep": {
+  "cmdId": "eb04b935-8d5e-4265-93f1-c64e2c44f886",
+  "name": "xclbinutil",
+  "logFile": "",
+  "commandLine": "xclbinutil --add-section BITSTREAM:RAW:/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/partial.bit --force --target hw --key-value SYS:dfx_enable:true --add-section :JSON:/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/vadd.link.rtd --append-section :JSON:/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/appendSection.rtd --add-section CLOCK_FREQ_TOPOLOGY:JSON:/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/vadd.link_xml.rtd --add-section BUILD_METADATA:JSON:/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/vadd.link_build.rtd --add-section EMBEDDED_METADATA:RAW:/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/vadd.link.xml --add-section SYSTEM_METADATA:RAW:/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/systemDiagramModelSlrBaseAddress.json --key-value SYS:PlatformVBNV:xilinx_u280_gen3x16_xdma_1_202211_1 --output /home/kimth/bloominho/main_repo/main_3/./build_dir.hw.xilinx_u280_gen3x16_xdma_1_202211_1/vadd.link.xclbin",
+  "args": [
+   "--add-section",
+   "BITSTREAM:RAW:/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/partial.bit",
+   "--force",
+   "--target",
+   "hw",
+   "--key-value",
+   "SYS:dfx_enable:true",
+   "--add-section",
+   ":JSON:/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/vadd.link.rtd",
+   "--append-section",
+   ":JSON:/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/appendSection.rtd",
+   "--add-section",
+   "CLOCK_FREQ_TOPOLOGY:JSON:/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/vadd.link_xml.rtd",
+   "--add-section",
+   "BUILD_METADATA:JSON:/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/vadd.link_build.rtd",
+   "--add-section",
+   "EMBEDDED_METADATA:RAW:/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/vadd.link.xml",
+   "--add-section",
+   "SYSTEM_METADATA:RAW:/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/link/int/systemDiagramModelSlrBaseAddress.json",
+   "--key-value",
+   "SYS:PlatformVBNV:xilinx_u280_gen3x16_xdma_1_202211_1",
+   "--output",
+   "/home/kimth/bloominho/main_repo/main_3/./build_dir.hw.xilinx_u280_gen3x16_xdma_1_202211_1/vadd.link.xclbin"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/kimth/bloominho/main_repo/main_3"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 22:08:32 2024",
+ "timestampMillis": "1724850512775",
+ "status": {
+  "cmdId": "eb04b935-8d5e-4265-93f1-c64e2c44f886",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 22:08:33 2024",
+ "timestampMillis": "1724850513048",
+ "status": {
+  "cmdId": "eb04b935-8d5e-4265-93f1-c64e2c44f886",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Wed Aug 28 22:08:33 2024",
+ "timestampMillis": "1724850513051",
+ "buildStep": {
+  "cmdId": "606b81f4-ddde-445d-af58-78afc6cb3dd4",
+  "name": "xclbinutilinfo",
+  "logFile": "",
+  "commandLine": "xclbinutil --quiet --force --info /home/kimth/bloominho/main_repo/main_3/./build_dir.hw.xilinx_u280_gen3x16_xdma_1_202211_1/vadd.link.xclbin.info --input /home/kimth/bloominho/main_repo/main_3/./build_dir.hw.xilinx_u280_gen3x16_xdma_1_202211_1/vadd.link.xclbin",
+  "args": [
+   "--quiet",
+   "--force",
+   "--info",
+   "/home/kimth/bloominho/main_repo/main_3/./build_dir.hw.xilinx_u280_gen3x16_xdma_1_202211_1/vadd.link.xclbin.info",
+   "--input",
+   "/home/kimth/bloominho/main_repo/main_3/./build_dir.hw.xilinx_u280_gen3x16_xdma_1_202211_1/vadd.link.xclbin"
+  ],
+  "iniFiles": [],
+  "cwd": "/home/kimth/bloominho/main_repo/main_3"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 22:08:33 2024",
+ "timestampMillis": "1724850513052",
+ "status": {
+  "cmdId": "606b81f4-ddde-445d-af58-78afc6cb3dd4",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 22:08:33 2024",
+ "timestampMillis": "1724850513686",
+ "status": {
+  "cmdId": "606b81f4-ddde-445d-af58-78afc6cb3dd4",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Wed Aug 28 22:08:33 2024",
+ "timestampMillis": "1724850513690",
+ "buildStep": {
+  "cmdId": "3d4c096e-371c-43a7-be24-f37d8b0bd303",
+  "name": "generate_sc_driver",
+  "logFile": "",
+  "commandLine": "",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/home/kimth/bloominho/main_repo/main_3"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 22:08:33 2024",
+ "timestampMillis": "1724850513690",
+ "status": {
+  "cmdId": "3d4c096e-371c-43a7-be24-f37d8b0bd303",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 22:08:33 2024",
+ "timestampMillis": "1724850513691",
+ "status": {
+  "cmdId": "3d4c096e-371c-43a7-be24-f37d8b0bd303",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Aug 28 22:08:33 2024",
+ "timestampMillis": "1724850513696",
+ "report": {
+  "path": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/reports/link/system_estimate_vadd.link.xtxt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_SYSTEM_ESTIMATE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Aug 28 22:08:33 2024",
+ "timestampMillis": "1724850513706",
+ "report": {
+  "path": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/logs/optraceViewer.html",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "OPERATION_TRACE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Wed Aug 28 22:08:33 2024",
+ "timestampMillis": "1724850513708",
+ "status": {
+  "cmdId": "5d6cb823-0e2d-47df-a0fc-fea1871dde1f",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Aug 28 22:08:33 2024",
+ "timestampMillis": "1724850513803",
+ "report": {
+  "path": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/reports/link/v++_link_vadd.link_guidance.html",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Wed Aug 28 22:08:33 2024",
+ "timestampMillis": "1724850513804",
+ "report": {
+  "path": "/home/kimth/bloominho/main_repo/main_3/_x.hw.xilinx_u280_gen3x16_xdma_1_202211_1/v++_link_vadd.link_guidance.pb3",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
