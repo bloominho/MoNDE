@@ -84,18 +84,18 @@ WHen you want to connect your MoNDE to your python codes, you should build pybin
 
 ## Results
 
-Matrix  | Size
------------ | -------------
-A | 4 x 30,000
-B | 30,000 x 64
-C | 64 x 64
+| Matrix  | Size |
+| ----------- | ------------- |
+| A | 4 x 30,000 |
+| B | 30,000 x 64 |
+| C | 64 x 64 |
 
 A @ B was executed 10,000 times to check its performance (bandwidth). Then, (A @ B) @ C was executed to check MoNDE's calculation accuracy.
 
-#  | Result
------------ | -------------
-Ideal Bandwidth | 18.2104 GB/s
-Measured Bandwidth | 17.3943 GB/s
+| #  | Result |
+| ----------- | ------------- |
+| Ideal Bandwidth | 18.2104 GB/s |
+| Measured Bandwidth | 17.3943 GB/s |
 
 The model achieved 95.5% of ideal bandwidth.
 
